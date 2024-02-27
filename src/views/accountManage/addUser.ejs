@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Materials Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nobile&family=Mohave:wght@400&family=Amasis+MT+Pro+Medium&display=swap">
+    <link rel="stylesheet" type="text/css" href="/public/css/accountManage.css" >
+    <link rel="icon" href="../public/image/LOGO_LMM.svg" type="image/x-icon">
+
+</head>
+<body>
+    <header>
+        
+        <a class="logo"  href="/about">
+            
+                <img src="../public/image/baner.svg" alt="Logo" href="/about">
+               
+        </a>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/courses">Courses</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+        <nav class="usermenu">
+            <ul>
+                <span class="logout">You are logged in! (  <a href="/logout">Log out</a>)</span>
+                
+            </ul>
+        </nav>
+    </header>
+    
+   <main class="nav-drawer">
+    <div class="panel" id="panel">
+        <h2>Dashboard</h2>
+        <ul>
+            <li class="accMana" id="add-btn"> <a href="/account-management">Account Management</a></li>
+            
+        </ul>
+    </div>
+    <div class="contentForm" id="form">
+  <form method="POST" action="/account-management/add-newUser/create-user">
+    <div class="container">
+      <h1>Add New A User</h1>
+      <div class="col-md-8"> <!-- Phần thứ hai: cập nhật/sửa đổi thông tin người dùng -->
+        <form action="/edit-profile" method="post" enctype="multipart/form-data"> <!-- Form gửi dữ liệu lên server -->
+          <div class="form-group"> <!-- Nhóm input cho FullName -->
+            
+            <input type="text" name="fullname" id="fullname" placeholder="Fullname" required> <!-- Input text cho FullName -->
+          </div>
+          <div class="form-group"> <!-- Nhóm input cho Email -->
+            
+            <input type="email" name="email" id="email" placeholder="Email" required> <!-- Input email cho Email -->
+          </div>
+          <div class="form-group"> <!-- Nhóm input cho Password -->
+           
+            <input type="password" name="password" id="password" placeholder="New Password" required> 
+          </div>
+          <div class="form-group"> <!-- Nhóm input cho Phone -->
+            
+            <input name="phoneNumber" id="phoneNumber" placeholder="PhoneNumber" required> <!-- Input tel cho Phone -->
+          </div>
+          <div class="form-group"> <!-- Nhóm input cho Address -->
+            
+            <input name="address" id="address" placeholder="Address" required></input> <!-- Input textarea cho Address -->
+          </div>
+<div class="form-group ">
+                    <label for="inputZip">Gender:  </label>
+                    <select name="gender" id="gender" >
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <label for="actor">Actor:  </label>
+                  <select name="actor" id="actor">
+                      <option value="Admin">Admin</option>
+                      <option value="CRDD">CRDD</option>
+                      <option value="AD">AD</option>
+                      <option value="Teacher">Teacher</option>
+                      <option value="Student">Student</option>
+                  </select>
+                </div>
+                
+
+          <div class="form-group"> <!-- Nhóm input cho nút xác nhận cập nhật -->
+            <a href="/account-management" id="back">Back</a>
+          <button class="add-user-btn" type="submit" name="submit" id="submit" >Add User</button>
+             
+          </div>
+        </form>
+      </div>
+    </div>
+  </form> 
+          </div>
+          
+        
+    </div>
+   </main>
+    
+</body>
+</html>

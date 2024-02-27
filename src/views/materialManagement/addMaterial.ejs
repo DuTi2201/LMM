@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Materials Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nobile&family=Mohave:wght@400&family=Amasis+MT+Pro+Medium&display=swap">
+    <link rel="stylesheet" type="text/css" href="/public/css/managementMaterial.css" >
+    <link rel="icon" href="../public/image/LOGO_LMM.svg" type="image/x-icon">
+
+</head>
+<body>
+    <header>
+        <a class="logo"  href="/home">
+            
+                <img src="../public/image/baner.svg" alt="Logo" href="/home">
+               
+        </a>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/courses">Courses</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+        <nav class="usermenu">
+            <ul>
+                <span class="logout">You are logged in! (  <a href="/logout">Log out</a>)</span>
+                
+            </ul>
+        </nav>
+    </header>
+    
+   <main class="nav-drawer">
+    <div class="panel" id="panel">
+        <h2>Material Management</h2>
+        <ul>
+            <li class="add-btn" id="add-btn"><a href="/management/add-material">Add Material</a></li>
+            <li  id="view-btn">Search Material</li>
+        </ul>
+    </div>
+    <div class="contentForm" id="form">
+        <div class="syllabusID inform">
+            <label for="syllabus-id">Syllabus ID:</label>
+            <input type="text" id="syllabus-id" value="S123456789" readonly>
+        </div>
+        <div class="subjectCode inform">
+            <label for="subject-code">Subject Code:</label>
+            <input type="text" id="subject-code" placeholder="Enter subject code">
+           </div>
+        <div class="subjectName inform">
+            <label for="subject-name">Subject Name:</label>
+            <input type="text" id="subject-name" placeholder="Enter subject name">
+        </div>
+        <div class="materialDescription inform">
+            <label for="material-description">Description:</label>
+            <input id="material-description" rows="5" placeholder="Enter material description"></input>
+           </div>
+       <div class="author inform">
+        <label for="author">Author:</label>
+        <input type="text" id="author" placeholder="Enter author name">
+       </div>
+       <div class="isbn inform">
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" placeholder="Enter ISBN number">
+       </div>
+        <div class="publisher inform">
+            <label for="publisher">Publisher:</label>
+            <input type="text" id="publisher" placeholder="Enter publisher name">
+        </div>
+        <div class="publicDate inform">
+            <label for="public-date">Public Date:</label>
+            <input type="date" id="public-date">
+           </div>
+        <div class="edition inform">
+            <label class="desText" for="edition">Edition:</label>
+            <input type="text" id="edition" placeholder="Enter edition number">
+        </div>
+        <div >
+            <label for="is-online"><input type="checkbox" id="is-online"> Is Online</label>
+        
+            <label for="is-hardcopy"><input type="checkbox" id="is-hardcopy"> Is Hard Copy</label>
+            
+            <label for="is-main-material"> <input type="checkbox" id="is-main-material"> Is Main Material</label>
+        </div>
+       <div class="note inform">
+        <label for="note">Note:</label>
+        <textarea id="note" rows="5" placeholder="Enter note"></textarea>
+       </div>
+        
+        <button id="create-btn">Create</button>
+    </div>
+   </main>
+    <script>
+        // JavaScript code for handling the panel and form logic
+        // Get the elements by id
+        var toggleBtn = document.getElementById("toggle-btn");
+        var panel = document.getElementById("panel");
+        var addBtn = document.getElementById("add-btn");
+        var viewBtn = document.getElementById("view-btn");
+        var searchBtn = document.getElementById("search-btn");
+        var form = document.getElementById("form");
+        var syllabusId = document.getElementById("syllabus-id");
+        document.getElementById("add-btn").addEventListener("click", function() {
+    // Lấy phần tử có class="contentForm"
+    var contentForm = document.querySelector(".contentForm");
+    
+    // Kiểm tra nếu class "active" đã được thêm vào
+    if (contentForm.classList.contains("active")) {
+        // Nếu đã có, loại bỏ class "active"
+        contentForm.classList.remove("active");
+    } else {
+        // Nếu chưa có, thêm class "active"
+        contentForm.classList.add("active");
+    }
+
+    // Lấy href từ id="add-btn"
+    var href = this.getAttribute("href");
+
+    // Chuyển hướng đến trang được chỉ định trong href
+    window.location.href = href;
+});
+
+        // Add event listeners for the buttons
+        toggleBtn.addEventListener("click", function() {
+            // Toggle the panel visibility
+            panel.classList.toggle("active");
+        });
+        // addBtn.addEventListener("click", function() {
+        //     // Toggle the panel visibility
+        //     panel.classList.toggle("contentForm");
+        // });
+        // addBtn.addEventListener("click", function() {
+        //     // Show the form for adding material
+        //     form.style.display = "flex";
+        //     // Generate a random syllabus id
+        //     syllabusId.value = "S" + Math.floor(Math.random() * 1000000000);
+        // });
+
+        viewBtn.addEventListener("click", function() {
+            // Hide the form and show the list of material
+            form.style.display = "none";
+            // TODO: Fetch the data from the database and display it
+        });
+
+        searchBtn.addEventListener("click", function() {
+            // Hide the form and show the search bar
+            form.style.display = "none";
+            // TODO: Implement the search functionality
+        });
+
+        createBtn.addEventListener("click", function() {
+            // Validate the form inputs and create a new material
+            // TODO: Validate the inputs and send them to the database
+        });
+    </script>
+</body>
+</html>

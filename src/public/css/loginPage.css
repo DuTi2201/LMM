@@ -1,0 +1,87 @@
+/* Chọn màu nền cho trang web */
+body {
+    font-family: "Amasis MT Pro Medium", sans-serif;
+    height: calc(100vh - 4.5em);
+    /* text-align: center; */
+    padding: 100px 20px;
+    background: linear-gradient(to bottom, #ceecf5 0%, #ceecf5 20%, #2e86c1 100%);
+    color: #1b4f72;
+    background-size: cover;
+  }
+  
+  /* Định dạng tiêu đề của trang web */
+  h2 {
+    font-family: 'Nobile', sans-serif;
+    font-size: 32px;
+    font-weight:900;
+    color: #1b4f72;
+  }
+  
+  /* Định dạng thẻ card chứa form đăng nhập */
+  .card {
+    width: 500px;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+  }
+  
+  /* Định dạng nội dung bên trong thẻ card */
+  .card-block {
+    background-color: #fff;
+    padding: 20px;
+  }
+  
+  /* Định dạng các input trong form đăng nhập */
+  input[type=text], input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  /* Thay đổi màu nền của input khi được focus */
+  input[type=text]:focus, input[type=password]:focus {
+    background-color: #e6e6e6;
+  }
+  
+  /* Định dạng nút đăng nhập */
+  button {
+    width: 97%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #2e86c1;
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+   
+  }
+  
+  /* Thay đổi màu nền của nút đăng nhập khi được hover */
+  button:hover {
+    background-color: #0069d9;
+  }
+  
+  /* Định dạng đoạn văn bản bên dưới nút đăng nhập */
+  .message {
+    font-family: 'Amasis MT Pro Medium', serif;
+    font-size: 14px;
+    color: #666666;
+  }
+  
+  /* Định dạng liên kết trong đoạn văn bản */
+  .message a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  /* Thay đổi màu của liên kết khi được hover */
+  .message a:hover {
+    color: #0069d9;
+  }
+  

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Materials- Learning Materials Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nobile&family=Mohave:wght@400&family=Amasis+MT+Pro+Medium&display=swap">
+    <link rel="stylesheet" type="text/css" href="/public/css/managementMaterial.css" >
+    <link rel="icon" href="../public/image/LOGO_LMM.svg" type="image/x-icon">
+    <style>
+        /* Định dạng cho các phần tử HTML */
+        h1 {
+            text-align: center;
+        }
+
+        input, select, button {
+            margin: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo"  href="/home">
+            
+                <img src="../public/image/baner.svg" alt="Logo" href="/home">
+               
+        </a>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/courses">Courses</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+        <nav class="usermenu">
+            <ul>
+                <span class="logout">You are logged in! (  <a href="/logout">Log out</a>)</span>
+                
+            </ul>
+        </nav>
+    </header>
+    
+   <main class="nav-drawer">
+    <div class="panel" id="panel">
+        <h2>Material Management</h2>
+        <ul>
+            <li id="add-btn"><a href="/management/add-material">Add Material</a></li>
+            <li class="view-btn" id="view-btn"><a href="/management/search-material">Search Material</a></li>
+           
+        </ul>
+    </div>
+     <!-- Phần tìm kiếm -->
+     <form class="search-material">
+        <input type="text" id="searchMaterial" name="searchMaterial" placeholder="Search Materials"/>
+        <button type="submit">Search</button>
+    </form>
+    <div class="contentForm" id="form">
+       <div>
+        <li>Search Results:</li>
+       </div>
+        <!-- Phần hiển thị thông tin cơ bản -->
+        <!-- <div>
+            <li>Syllabus ID:<p>123456</p></li>
+            <li>Subject Code:<p>CS101</p></li>
+            <li>Subject Name:<p>Introduction to Computer Science</p></li>
+
+        </div> -->
+        
+        <!-- Phần hiển thị bảng thông tin chi tiết -->
+        <table>
+            <tr>
+                <th>Subject Name</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Edition</th>
+                <th>Subject Code</th>
+                <th>Material Description</th>
+                <th>ISBN</th>
+                <th>Public Date</th>
+                <th>Is Online</th>
+                <th>Is Hard Copy</th>
+                <th>Is Main Material</th>
+                <th>Note</th>
+            </tr>
+            <tr>
+                <td>Introduction to Computer Science</td>
+                <td>David J. Malan</td>
+                <td>Harvard University Press</td>
+                <td>1st</td>
+                <td>CS101</td>
+                <td>A textbook that covers the basics of computer science and programming.</td>
+                <td>978-0-674-08886-4</td>
+                <td>2020-01-01</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>Introduction to Computer Science</td>
+                <td>John Zelle</td>
+                <td>Franklin, Beedle & Associates</td>
+                <td>3rd</td>
+                <td>CS101</td>
+                <td>A textbook that introduces Python as a tool for solving problems.</td>
+                <td>978-1-59028-275-5</td>
+                <td>2019-08-01</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Optional</td>
+            </tr>
+        </table>
+    </div>
+   </main>
+</body>
+</html>

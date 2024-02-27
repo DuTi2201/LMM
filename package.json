@@ -1,0 +1,25 @@
+{
+  "name": "lmm",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/server.js"
+  },
+  "author": "DuTi",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "bluebird": "3.7.2",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mysql2": "2.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.10"
+  },
+  "description": ""
+}

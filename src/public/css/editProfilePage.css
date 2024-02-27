@@ -1,0 +1,158 @@
+body {
+    font-family: "Amasis MT Pro Medium", sans-serif;
+    height: calc(100vh - 4.5em);
+    /* text-align: center; */
+    padding: 100px 20px;
+    background: linear-gradient(to bottom, #ceecf5 0%, #ceecf5 20%, #2e86c1 100%);
+    color: #1b4f72;
+    background-size: cover;
+  }
+  .col-md-8{
+    padding: 20px;
+  }
+/* Định dạng thẻ div chứa form edit profile */
+.edit-profile {
+    background-color: #fff;
+    width: 45%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius:0px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* Định dạng tiêu đề của form */
+  .edit-profile h2 {
+    font-family: 'Nobile', sans-serif;
+    font-size: 32px;
+    font-weight:900;
+    color: #1b4f72;
+    margin-bottom: 10px;
+  }
+  
+  /* Định dạng dòng kẻ ngăn cách tiêu đề với phần nội dung */
+  .edit-profile hr {
+    border: none;
+    height: 1px;
+    background: #e6e6e6;
+    margin: 10px 0;
+  }
+  
+  /* Định dạng các nhóm input trong form */
+  .edit-profile .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Định dạng nhãn của các input */
+  .edit-profile .form-group label {
+    width: 25%;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  /* Định dạng các input text, email, password, phone */
+  .edit-profile .form-group input[type=text], 
+  .edit-profile .form-group input[type=email], 
+  .edit-profile .form-group input[type=password], 
+  .edit-profile .form-group input[type=tel] {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  /* Định dạng input file cho avatar */
+  .edit-profile .form-group input[type=file] {
+    width: 70%;
+  }
+  
+  /* Định dạng input textarea cho address */
+  .edit-profile .form-group textarea {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+  }
+  
+  /* Định dạng nút submit */
+  .edit-profile .form-group button {
+    width: 15%;
+    padding: 13px;
+    margin-left: 5%;
+    border: none;
+    border-radius: 5px;
+    background-color: #2e86c1;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* Thay đổi màu nền của nút submit khi được hover */
+  .edit-profile .form-group button:hover {
+    background-color: #0069d9;
+  }
+  
+  /* Định dạng thông báo lỗi hoặc thành công */
+  .edit-profile .alert {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  /* Định dạng màu cho thông báo lỗi */
+  .edit-profile .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Định dạng màu cho thông báo thành công */
+  .edit-profile .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  /* Định dạng nút back để quay về trang chủ */
+  .edit-profile #back {
+    display: block;
+    width: 100px;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #1b4f72;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: #1b4f72;
+  }
+  
+  /* Thay đổi màu nền và màu chữ của nút back khi được hover */
+  .edit-profile #back:hover {
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  /* Định dạng thẻ div để vẽ hình vuông mờ viền */
+  .avatar {
+    width: 156px; /* Chiều rộng của hình vuông */
+    height: 155px; /* Chiều cao của hình vuông */
+    border: 1px solid #cccccc; /* Độ dày và màu của viền */
+    opacity: 0.5; /* Độ mờ của hình vuông */
+    display: flex; /* Sử dụng flexbox để căn giữa nội dung bên trong */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+  }
+  
+  /* Định dạng đoạn văn bản bên trong thẻ div */
+  .avatar p {
+    font-size: 16px; /* Kích thước chữ */
+    color: #333333; /* Màu chữ */
+  }
+  

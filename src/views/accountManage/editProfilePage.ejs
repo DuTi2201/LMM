@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile- Learning Materials Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nobile&family=Mohave:wght@400&family=Amasis+MT+Pro+Medium&display=swap">
+    <link rel="stylesheet" type="text/css" href="/public/css/editProfilePage.css" >
+    <link rel="icon" href="../public/image/LOGO_LMM.svg" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="edit-profile">
+        <h2>Edit User Profile</h2>
+        <hr> <!-- Dòng kẻ ngăn cách tiêu đề với phần nội dung -->
+        <div class="row"> <!-- Phần nội dung gồm 2 phần chính -->
+          <div class="col-md-4"> <!-- Phần thứ nhất: avatar người dùng -->
+            <div class="avatar"> <!-- Thẻ div để vẽ hình vuông mờ viền -->
+              <!-- Nội dung bên trong thẻ div có thể là một đoạn văn bản hoặc một icon -->
+              <p>Avatar</p>
+            </div>
+          </div>
+          <div class="col-md-8"> <!-- Phần thứ hai: cập nhật/sửa đổi thông tin người dùng -->
+            <form action="/edit-profile" method="post" enctype="multipart/form-data"> <!-- Form gửi dữ liệu lên server -->
+              <div class="form-group"> <!-- Nhóm input cho FullName -->
+                <input type="text" name="fullname" id="fullname" value="Nguyen Van A" required> <!-- Input text cho FullName -->
+              </div>
+              <div class="form-group"> <!-- Nhóm input cho Phone -->
+                <input type="tel" name="phone" id="phone" value="0123456789" required> <!-- Input tel cho Phone -->
+              </div>
+              <div class="form-group"> <!-- Nhóm input cho Address -->
+                <textarea name="address" id="address" rows="3" required>123 Nguyen Trai, Ha Noi</textarea> <!-- Input textarea cho Address -->
+              </div>
+              <div class="form-group"> <!-- Nhóm input cho Email -->
+                <input type="email" name="email" id="email" value="nguyenvana@gmail.com" required> <!-- Input email cho Email -->
+              </div>
+              <div class="form-group"> <!-- Nhóm input cho chức năng tải ảnh lên để cập nhật avatar người dùng -->
+                <label for="avatar">Update avatar:</label>
+                <input type="file" name="avatar" id="avatar" accept="image/*"> <!-- Input file cho Avatar -->
+              </div>
+              <div class="form-group"> <!-- Nhóm input cho nút xác nhận cập nhật -->
+                <button type="submit" name="submit" id="submit">Update</button> <!-- Nút submit cho form -->
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row"> <!-- Phần bên dưới cùng gồm nút back để quay về trang chủ -->
+          <div class="col-md-12">
+            <a href="/account-management" id="back">Back</a> <!-- Liên kết quay về trang chủ -->
+          </div>
+        </div>
+      </div>
+      
+</body>
+
+</html>
