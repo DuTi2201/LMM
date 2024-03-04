@@ -15,9 +15,10 @@ let initWebRoutes = (app) => {
     router.get('/management/add-material', addMaterialController.getAddMaterial);
     router.get('/management/search-material', searchMaterialController.getSearchMaterial);
     router.get('/login', loginController.getLoginPage);
-    router.post('/delete-user/:id', accountManageController.handleDeleteUser);
+    router.post('/account-management/delete-user/:id', accountManageController.handleDeleteUser);
     router.get('/management', managemenController.getManagementMaterial);
-    router.get('/edit-profile', editProfileController.getEditProfilePage);
+    router.get('/account-management/edit-profile/:id', editProfileController.getEditProfilePage);
+    router.post('/account-management/edit-profile/update-user', editProfileController.handleUpdateUser);
     router.get('/account-management', accountManageController.getAccountManage);
     router.get('/account-management/add-newUser', addUserController.getAddNewUser);
     router.post('/account-management/add-newUser/create-user', addUserController.handleCreateNewUser);

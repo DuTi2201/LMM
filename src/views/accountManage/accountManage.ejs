@@ -14,14 +14,14 @@
 <body>
     <header>
         
-        <a class="logo"  href="/about">
+        <a class="logo"  href="/home">
             
-                <img src="../public/image/baner.svg" alt="Logo" href="/about">
+                <img src="../public/image/baner.svg" alt="Logo" href="/home">
                
         </a>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
+                <li><a href="/home">Home</a></li>
                 <li><a href="/courses">Courses</a></li>
                 <li><a href="/about">About</a></li>
             </ul>
@@ -86,8 +86,8 @@
                       <td><%= item.address %></td>
                       <td><%= item.actor %></td>
                       <td>
-                        <a href="/edit-profile"> <button class="edit-btn">Edit</button> </a>
-                        <form style="display: inline;" action="/delete-user/<%= item.id %>" method="POST" ><button class="delete-btn" type="submit">Delete</button></form>
+                        <a style="display: inline;" href="/account-management/edit-profile/<%= item.id %>" ><button class="edit-btn" type="submit">Edit</button></a>
+                        <form style="display: inline;" action="/account-management/delete-user/<%= item.id %>" method="POST" ><button class="delete-btn" type="submit">Delete</button></form>
                         
                       </td>
                     </tr>

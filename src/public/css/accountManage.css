@@ -5,7 +5,32 @@
     --gray: #f0f0f0;
 }
 
+header {
+  background: linear-gradient(to bottom, #5dade2, #ceecf5);
+  color: #1b4f72;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+header .logo img {
+  padding-bottom: 18px;
+  margin-right: 1rem;
+  width: 175px;
+  height: auto;
+  cursor: pointer;
+}
+header h1 {
+  font-family: 'Nobile' ;
+  margin: 0; 
+  font-size: 1.75em;
+}
+nav {
+  font-family: 'Mohave' ;
+  text-transform: uppercase;
 
+  padding-left: 30px;
+  font-size:x-large;
+}
 body {
     font-family: "Amasis MT Pro Medium", sans-serif;
     height: calc(100vh - 4.5em);

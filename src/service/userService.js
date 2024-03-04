@@ -25,6 +25,19 @@ const createNewUser = async (fullname, email, password, phoneNumber, address, ge
         }
     )
 }
+const updateUserInfor = async(id, fullname, email, phoneNumber, address) => {
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        database: 'LMMS',
+        Promise:bluebird,
+      });
+    connection.query(
+        'UPDATE users SET fullname = ?, email = ?, phoneNumber = ?, address = ? WHERE id=?', [fullname, email, phoneNumber, address, id],
+        function (err, results, fields) {
+        }
+    )
+}
 const getUserList = async() => {
     const connection = await mysql.createConnection({
         host: 'localhost',
@@ -41,7 +54,7 @@ const getUserList = async() => {
 }
 
 const deleteUser = async (id) => {
-    ;
+    
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -56,8 +69,23 @@ const deleteUser = async (id) => {
         }
 
 }
+const getUserById = async (id) => {
+    
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        database: 'LMMS',
+        Promise:bluebird,
+      });
+    try {
+        const [rows, fields] = await connection.execute('SELECT * FROM users WHERE id = ?', [id]);
+        return rows;
+    } catch (error) {
+            console.log('>>check erro: ', error)
+        }
+}
 
 
 module.exports = {
-createNewUser, getUserList,deleteUser
+createNewUser, getUserList,deleteUser,getUserById, updateUserInfor
 }

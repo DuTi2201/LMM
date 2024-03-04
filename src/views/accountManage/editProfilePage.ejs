@@ -2,57 +2,107 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Profile- Learning Materials Management</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nobile&family=Mohave:wght@400&family=Amasis+MT+Pro+Medium&display=swap">
-    <link rel="stylesheet" type="text/css" href="/public/css/editProfilePage.css" >
-    <link rel="icon" href="../public/image/LOGO_LMM.svg" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Materials Management</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Nobile&family=Mohave:wght@400&family=Amasis+MT+Pro+Medium&display=swap">
+  <link rel="stylesheet" type="text/css" href="/public/css/accountManage.css">
+  <link rel="icon" href="../public/image/LOGO_LMM.svg" type="image/x-icon">
 
 </head>
 
 <body>
-    <div class="edit-profile">
-        <h2>Edit User Profile</h2>
-        <hr> <!-- Dòng kẻ ngăn cách tiêu đề với phần nội dung -->
-        <div class="row"> <!-- Phần nội dung gồm 2 phần chính -->
-          <div class="col-md-4"> <!-- Phần thứ nhất: avatar người dùng -->
-            <div class="avatar"> <!-- Thẻ div để vẽ hình vuông mờ viền -->
-              <!-- Nội dung bên trong thẻ div có thể là một đoạn văn bản hoặc một icon -->
-              <p>Avatar</p>
-            </div>
-          </div>
+  <header>
+
+    <a class="logo" href="/home">
+
+      <img src="../../public/image/baner.svg" alt="Logo" >
+
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/courses">Courses</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </nav>
+    <nav class="usermenu">
+      <ul>
+        <span class="logout"> You are logged in! ( <a href="/logout">Log out</a>)</span>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main class="nav-drawer">
+    <div class="panel" id="panel">
+      <h2>Dashboard</h2>
+      <ul>
+        <li class="accMana" id="add-btn"> <a href="/account-management">Account Management</a></li>
+
+      </ul>
+    </div>
+    <div class="contentForm" id="form">
+      <form action="/account-management/edit-profile/update-user" method="POST">
+        <div class="container">
+          <h1>Edit User's Profile</h1>
           <div class="col-md-8"> <!-- Phần thứ hai: cập nhật/sửa đổi thông tin người dùng -->
-            <form action="/edit-profile" method="post" enctype="multipart/form-data"> <!-- Form gửi dữ liệu lên server -->
+            <form action="/account-management/edit-profile/update-user" method="POST">
+              <!-- Form gửi dữ liệu lên server -->
+              <input hidden name="id" value="<%=userData.id %>" />
               <div class="form-group"> <!-- Nhóm input cho FullName -->
-                <input type="text" name="fullname" id="fullname" value="Nguyen Van A" required> <!-- Input text cho FullName -->
-              </div>
-              <div class="form-group"> <!-- Nhóm input cho Phone -->
-                <input type="tel" name="phone" id="phone" value="0123456789" required> <!-- Input tel cho Phone -->
-              </div>
-              <div class="form-group"> <!-- Nhóm input cho Address -->
-                <textarea name="address" id="address" rows="3" required>123 Nguyen Trai, Ha Noi</textarea> <!-- Input textarea cho Address -->
+
+                <input type="text" name="fullname" id="fullname" value="<%=userData.fullName %>" />
+                <!-- Input text cho FullName -->
               </div>
               <div class="form-group"> <!-- Nhóm input cho Email -->
-                <input type="email" name="email" id="email" value="nguyenvana@gmail.com" required> <!-- Input email cho Email -->
+
+                <input type="email" name="email" id="email" value="<%=userData.email %>" />
+                <!-- Input email cho Email -->
               </div>
-              <div class="form-group"> <!-- Nhóm input cho chức năng tải ảnh lên để cập nhật avatar người dùng -->
-                <label for="avatar">Update avatar:</label>
-                <input type="file" name="avatar" id="avatar" accept="image/*"> <!-- Input file cho Avatar -->
+              <div class="form-group"> <!-- Nhóm input cho Phone -->
+
+                <input name="phoneNumber" id="phoneNumber" value="<%=userData.fullName %>" />
+                <!-- Input tel cho Phone -->
               </div>
+              <div class="form-group"> <!-- Nhóm input cho Address -->
+
+                <input name="address" id="address" value="<%=userData.address %>" /> <!-- Input textarea cho Address -->
+              </div>
+              <div class="form-group ">
+                <label for="inputZip">Gender: </label>
+                <select name="gender" id="gender" value="<%=userData.gender %>">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                <label for="actor">Actor: </label>
+                <select name="actor" id="actor" value="<%=userData.actor %>">
+                  <option value="Admin">Admin</option>
+                  <option value="CRDD">CRDD</option>
+                  <option value="AD">AD</option>
+                  <option value="Teacher">Teacher</option>
+                  <option value="Student">Student</option>
+                </select>
+              </div>
+
+
               <div class="form-group"> <!-- Nhóm input cho nút xác nhận cập nhật -->
-                <button type="submit" name="submit" id="submit">Update</button> <!-- Nút submit cho form -->
+                <a href="/account-management" id="back">Back</a>
+                <button class="add-user-btn" type="submit" name="submit" id="submit">Update</button>
+
               </div>
             </form>
           </div>
         </div>
-        <div class="row"> <!-- Phần bên dưới cùng gồm nút back để quay về trang chủ -->
-          <div class="col-md-12">
-            <a href="/account-management" id="back">Back</a> <!-- Liên kết quay về trang chủ -->
-          </div>
-        </div>
-      </div>
-      
+      </form>
+    </div>
+
+
+    </div>
+  </main>
+
 </body>
 
 </html>
