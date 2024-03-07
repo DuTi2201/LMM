@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Activity_Log.belongsTo(Account);
     }
   };
   Activity_Log.init({

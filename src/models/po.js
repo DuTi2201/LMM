@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      PO.belongsToMany(Curriculum, { through: 'Curriculum_PO' });
     }
   };
   PO.init({

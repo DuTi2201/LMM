@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Account.belongsTo(models.Group);
+      Account.hasOne(Role);
+      Account.hasMany(Activity_Log);
+      Account.hasMany(Comment);
+      Account.belongsToMany(Curriculum, { through: 'Curriculum_Authorization' });
     }
   };
   Account.init(

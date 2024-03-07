@@ -32,7 +32,7 @@ module.exports = {
       account_phonenumber: {
         type: Sequelize.STRING
       },
-      group_id: {
+      role_id: {
         type: Sequelize.INTEGER
       },
       createdAt: {

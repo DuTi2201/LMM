@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Material.belongsToMany(Syllabus, { through: 'Material_Syllabus' });
     }
   };
   Material.init({

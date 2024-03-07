@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Curriculum.belongsToMany(Account, { through: 'Curriculum_Authorization' });
+      Curriculum.belongsToMany(Subject, { through: 'Curriculum_Subject' });
+      Curriculum.belongsToMany(PO, { through: 'Curriculum_PO' });
+      Curriculum.hasOne(Schedule);
     }
   };
   Curriculum.init({
