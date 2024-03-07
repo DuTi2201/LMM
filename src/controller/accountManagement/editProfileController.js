@@ -16,13 +16,14 @@ const getEditProfilePage = async (req, res) => {
 }
 const handleUpdateUser = async (req, res) => {
     let id = req.body.id;
-    let fullname = req.body.fullname;
-    let email = req.body.email;
-    let phoneNumber = req.body.phoneNumber;
-    let address = req.body.address;
+    let account_firstname = req.body.account_firstname;
+    let account_lastname = req.body.account_lastname;
+    let account_email = req.body.account_email;
+    let account_phonenumber = req.body.account_phonenumber;
+    let account_address = req.body.account_address;
 
     
-    await userService.updateUserInfor(id, fullname, email, phoneNumber, address);
+    await userService.updateUserInfor(id, account_firstname, account_lastname, account_email, account_phonenumber, account_address);
    
     return res.redirect('/account-management');
 }

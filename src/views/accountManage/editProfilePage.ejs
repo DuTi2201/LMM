@@ -51,40 +51,42 @@
             <form action="/account-management/edit-profile/update-user" method="POST">
               <!-- Form gửi dữ liệu lên server -->
               <input hidden name="id" value="<%=userData.id %>" />
-              <div class="form-group"> <!-- Nhóm input cho FullName -->
-
-                <input type="text" name="fullname" id="fullname" value="<%=userData.fullName %>" />
-                <!-- Input text cho FullName -->
+              <div class="form-group"> 
+                <input type="text" name="account_firstname" id="account_firstname" value="<%=userData.account_firstname %>" />      
               </div>
-              <div class="form-group"> <!-- Nhóm input cho Email -->
-
-                <input type="email" name="email" id="email" value="<%=userData.email %>" />
-                <!-- Input email cho Email -->
+              <div class="form-group"> 
+                <input type="text" name="account_lastname" id="account_lastname" value="<%=userData.account_lastname %>" />
               </div>
-              <div class="form-group"> <!-- Nhóm input cho Phone -->
-
-                <input name="phoneNumber" id="phoneNumber" value="<%=userData.fullName %>" />
-                <!-- Input tel cho Phone -->
+              <div class="form-group"> 
+                <input type="text" name="account_username" id="account_username" value="<%=userData.account_username %>" />      
               </div>
-              <div class="form-group"> <!-- Nhóm input cho Address -->
-
-                <input name="address" id="address" value="<%=userData.address %>" /> <!-- Input textarea cho Address -->
+              <div class="form-group"> 
+                <input type="text" name="account_username" id="account_username" placeholder="Username" required> 
+              </div>
+              <div class="form-group">
+                <input type="email" name="account_email" id="account_email" value="<%=userData.account_email %>" />
+              </div>
+              <div class="form-group"> 
+                <input name="account_phonenumber" id="account_phonenumber" value="<%=userData.account_phonenumber %>" />
+              </div>
+              <div class="form-group"> 
+                <input name="account_address" id="account_address" value="<%=userData.account_address %>" /> <!-- Input textarea cho Address -->
               </div>
               <div class="form-group ">
                 <label for="inputZip">Gender: </label>
-                <select name="gender" id="gender" value="<%=userData.gender %>">
+                <select name="account_gender" id="account_gender" value="<%=userData.account_gender %>">
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
                 </select>
-                <label for="actor">Actor: </label>
+                <!-- <label for="actor">Actor: </label>
                 <select name="actor" id="actor" value="<%=userData.actor %>">
                   <option value="Admin">Admin</option>
                   <option value="CRDD">CRDD</option>
                   <option value="AD">AD</option>
                   <option value="Teacher">Teacher</option>
                   <option value="Student">Student</option>
-                </select>
+                </select> -->
               </div>
 
 

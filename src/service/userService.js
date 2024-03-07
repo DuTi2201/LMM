@@ -11,8 +11,8 @@ const hashPassword = (userPassword) => {
     return hashPassword;
 }
 
-const createNewUser = async (fullname, email, password, phoneNumber, address, gender, actor) =>{
-    let hashPass = hashPassword(password);
+const createNewUser = async (account_firstname, account_lastname, account_username, account_email, account_password, account_phonenumber, account_address, account_gender) =>{
+    let hashPass = hashPassword(account_password);
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -20,12 +20,12 @@ const createNewUser = async (fullname, email, password, phoneNumber, address, ge
         Promise:bluebird,
       });
     connection.query(
-        'INSERT INTO users (fullname, email, password, phoneNumber, address, gender, actor	) VALUES (?, ?, ?, ?, ?, ?, ?)', [fullname, email, hashPass, phoneNumber, address, gender, actor],
+        'INSERT INTO Accounts (account_firstname, account_lastname, account_username, account_email, account_password, account_phonenumber, account_address, account_gender	) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [account_firstname, account_lastname, account_username, account_email, hashPass, account_phonenumber, account_address, account_gender],
         function (err, results, fields) {
         }
     )
 }
-const updateUserInfor = async(id, fullname, email, phoneNumber, address) => {
+const updateUserInfor = async(id, account_firstname, account_lastname, account_email, account_phonenumber, account_address) => {
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -33,7 +33,7 @@ const updateUserInfor = async(id, fullname, email, phoneNumber, address) => {
         Promise:bluebird,
       });
     connection.query(
-        'UPDATE users SET fullname = ?, email = ?, phoneNumber = ?, address = ? WHERE id=?', [fullname, email, phoneNumber, address, id],
+        'UPDATE Accounts SET account_firstname, account_lastname = ?, account_email = ?, account_phonenumber = ?, account_address = ? WHERE id=?', [account_firstname, account_lastname, account_email, account_phonenumber, account_address, id],
         function (err, results, fields) {
         }
     )
@@ -46,7 +46,7 @@ const getUserList = async() => {
         Promise:bluebird,
       });
     try {
-        const [rows, fields] = await connection.execute('SELECT * FROM users');
+        const [rows, fields] = await connection.execute('SELECT * FROM Accounts');
         return rows;
     } catch (error) {
             console.log('>>check erro: ', error)
@@ -62,7 +62,7 @@ const deleteUser = async (id) => {
         Promise:bluebird,
       });
     try {
-        const [rows, fields] = await connection.execute('DELETE FROM users WHERE id = ?', [id]);
+        const [rows, fields] = await connection.execute('DELETE FROM Accounts WHERE id = ?', [id]);
         return rows;
     } catch (error) {
             console.log('>>check erro: ', error)
@@ -78,7 +78,7 @@ const getUserById = async (id) => {
         Promise:bluebird,
       });
     try {
-        const [rows, fields] = await connection.execute('SELECT * FROM users WHERE id = ?', [id]);
+        const [rows, fields] = await connection.execute('SELECT * FROM Accounts WHERE id = ?', [id]);
         return rows;
     } catch (error) {
             console.log('>>check erro: ', error)

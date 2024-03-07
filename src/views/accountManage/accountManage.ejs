@@ -70,7 +70,7 @@
                     
                     <th>Phone</th>
                     <th>Address</th>
-                    <th>Actor</th>
+                    <!-- <th>Actor</th> -->
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -78,13 +78,13 @@
                   <% userList.forEach(function(item, index){ %>
                     <tr class="row-hover">
                       <td><%= item.id %></td>
-                      <td><%= item.fullName %></td>
-                        <td><%= item.gender %></td>
-                      <td><%= item.email %></td>
+                      <td><%= item.account_firstname %> <%= item.account_lastname %></td>
+                        <td><%= item.account_gender %></td>
+                      <td><%= item.account_email %></td>
                     
-                      <td><%= item.phoneNumber %></td>
-                      <td><%= item.address %></td>
-                      <td><%= item.actor %></td>
+                      <td><%= item.account_phonenumber %></td>
+                      <td><%= item.account_address %></td>
+                      <!-- <td><%= item.actor %></td> -->
                       <td>
                         <a style="display: inline;" href="/account-management/edit-profile/<%= item.id %>" ><button class="edit-btn" type="submit">Edit</button></a>
                         <form style="display: inline;" action="/account-management/delete-user/<%= item.id %>" method="POST" ><button class="delete-btn" type="submit">Delete</button></form>

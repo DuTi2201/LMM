@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import configViewEngine from './config/viewEngine';
 import initWebRoutes from './routes/web';
-// import connectDB from './config/connectDB';
+import connectDB from './config/connectDB';
 // import cors from 'cors';
 
 require('dotenv').config();
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-// connectDB();
+connectDB();
 
 configViewEngine(app);
 
