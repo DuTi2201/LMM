@@ -15,12 +15,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Material.init({
-    material_name: DataTypes.STRING,
+    
     material_description: DataTypes.STRING,
-    material_type: DataTypes.STRING,
-    material_url: DataTypes.STRING,
-    syllabus_id: DataTypes.INTEGER
-  }, {
+    author: DataTypes.STRING,
+    publisher: DataTypes.STRING,
+    isbn: DataTypes.STRING,
+    edition: DataTypes.STRING,
+    classification: DataTypes.STRING,
+    note: DataTypes.MEDIUMTEXT,
+    syllabus_id: DataTypes.INTEGER,
+    subject_id: DataTypes.INTEGER,
+    subject_name: DataTypes.STRING
+  },
+    {
     sequelize,
     modelName: 'Material',
   });

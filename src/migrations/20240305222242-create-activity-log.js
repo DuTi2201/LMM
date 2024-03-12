@@ -19,6 +19,7 @@ module.exports = {
       },
       account_id: {
         type: Sequelize.INTEGER
+        
       },
       createdAt: {
         allowNull: false,

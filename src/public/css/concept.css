@@ -1,0 +1,340 @@
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Nobile' ;
+}
+
+nav {
+    background: linear-gradient(to bottom, #bbe1fa, #ffffff);
+    padding: 5px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+                rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    z-index: 1;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+nav .logo img {
+    height: 45px;
+    width: auto;
+    margin-right: 10px;
+}
+
+/* nav .logo h1 {
+    font-size: 1.1rem;
+    background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+} */
+
+nav ul.desktop-menu {
+    list-style: none;
+    display: flex;
+}
+
+nav ul.desktop-menu li {
+    margin-left: 1.5rem;
+}
+
+nav ul.desktop-menu li a {
+    text-transform: uppercase;
+    font-weight:700;
+    text-decoration: none;
+    color: #1b4f72;
+    font-size: 120%;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+nav ul.desktop-menu li a:hover {
+
+    background-color: #bbe1fa;
+    text-decoration: underline;
+}
+
+.hamburger {
+    /* display: none; */
+    cursor: pointer;
+}
+
+.hamburger .line {
+    width: 25px;
+    height: 2px;
+    border-radius: 20%;
+    background-color: #1b4f72;
+    font-weight:900;
+    display: block;
+    margin: 7px auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger-active {
+    transition: all 0.3s ease-in-out;
+    transition-delay: 0.6s;
+    transform: rotate(45deg);
+}
+
+.hamburger-active .line:nth-child(2) {
+    width: 0px;
+}
+
+.hamburger-active .line:nth-child(1),
+.hamburger-active .line:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.hamburger-active .line:nth-child(1) {
+    transform: translateY(12px);
+}
+
+.hamburger-active .line:nth-child(3) {
+    transform: translateY(-5px) rotate(90deg);
+}
+
+.menubar {
+    position: absolute;
+    top: 0;
+    left: -60%;
+    display: block;
+    justify-content: center;
+    align-items: flex-start;
+    width: 20%;
+    height: 100vh;
+    padding: 10% 0 10% 3%;
+    background: rgba(255, 255, 255,0.93);
+    transition: all 0.5s ease-in;
+    z-index: 2;
+}
+.menubar ul li a {
+    text-transform: uppercase;
+    font-weight:700;
+    text-decoration: none;
+    color: #1b4f72;
+    font-size: 100%;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+.menubar ul li a:hover{
+    background-color: #bbe1fa;
+    text-decoration: underline;
+}
+
+.active {
+    left: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.menubar ul {
+    padding: 0;
+    list-style: none;
+}
+
+.menubar ul li {
+    margin-bottom: 32px;
+}
+
+.container h1{
+    text-transform: uppercase;
+    font-size:180%;
+    font-weight:900;
+    text-align: center;
+    text-decoration: none;
+    color: #1b4f72;
+}
+
+
+.usermenu {
+    margin-left: auto;
+    padding-right: 2%;
+    color: #1b4f72;
+}
+
+.usermenu .logout a {
+    color: #1b4f72;; /* Màu chữ cho phần đăng xuất */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.usermenu .logout a:hover {
+    color: #c41818; /* Màu chữ khi hover */
+    font-weight:700;
+}
+
+.nav-drawer {
+    display: flex;
+}
+
+.panel {
+    width: 250px; /* Kích thước của panel */
+    background-color: #ffffff; /* Màu nền của panel */
+    padding: 20px; /* Khoảng cách giữa các phần tử trong panel */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Đổ bóng cho panel */
+}
+
+.panel h2 {
+    margin-bottom: 20px; /* Khoảng cách giữa tiêu đề và các mục trong panel */
+}
+
+.panel ul {
+    list-style-type: none;
+}
+
+.panel ul li {
+    margin-bottom: 10px; /* Khoảng cách giữa các mục trong panel */
+}
+
+.panel ul li a {
+    color: #1377c9; /* Màu chữ cho các mục trong panel */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.panel ul li a:hover {
+    color: #f0ca4d; /* Màu chữ khi hover */
+}
+
+.contentForm {
+    flex: 1;
+    margin: 0 0 0 20em;
+    padding: 20px; /* Khoảng cách giữa các phần tử trong content */
+}
+
+.contentForm h1 {
+    margin-bottom: 20px; /* Khoảng cách giữa tiêu đề và các mục trong content */
+    text-align: left;
+}
+.contentForm input, .contentForm select, .contentForm textarea {
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    color: #082b43;
+}
+.contentForm .form-group {
+    margin: 1em;
+}
+.contentForm .form-group input {
+font-size: 24px;
+    width: 40%;
+    height: 3rem;
+
+}
+.contentForm #submit{
+    background-color: #0f4c75;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 20%;
+}
+.contentForm #back {
+    display: block;
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #1b4f72;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: #1b4f72;
+}
+.contentForm #back:hover{
+    background-color: #0f4c75;
+    color: #ffffff;
+    font-weight: bold;
+}
+.filter-search {
+    display: flex;
+    margin-bottom: 20px; /* Khoảng cách giữa các phần tử trong filter-search */
+}
+
+.filter-search select,
+.filter-search input[type="text"],
+.filter-search button {
+    margin-right: 10px; /* Khoảng cách giữa các phần tử trong filter-search */
+}
+
+.add-user {
+    margin-bottom: 20px; /* Khoảng cách giữa các phần tử trong add-user */
+    padding-left: 85%;
+}
+
+.add-user #add-user-btn {
+    background-color: #0f4c75; /* Màu nền cho nút */
+    color: #ffffff; /* Màu chữ cho nút */
+    border: none;
+    padding: 10px 20px; /* Kích thước của nút */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.add-user #add-user-btn:hover {
+    text-decoration: underline;
+    color: #ffffff
+    ; /* Màu nền khi hover */
+}
+
+.info-board {
+    background-color: #ffffff; /* Màu nền của bảng thông tin */
+    padding: 20px; /* Khoảng cách giữa các phần tử trong bảng thông tin */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Đổ bóng cho bảng thông tin */
+}
+
+.info-board table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-board table th,
+.info-board table td {
+    border: 1px solid #efefef; /* Viền cho các ô */
+    padding: 10px; /* Khoảng cách giữa nội dung và viền */
+    text-align: center;
+}
+
+.info-board table th {
+    background-color: #0f4c75; /* Màu nền cho tiêu đề cột */
+    color: #ffffff; /* Màu chữ cho tiêu đề cột */
+    font-weight: 900;
+    
+}
+.info-board table td {
+font-family: arial, sans-serif;
+}
+.info-board table tr:hover {
+    background-color: #d2eafa; /* Màu nền khi hover */
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px; /* Kích thước của nút */
+    cursor: pointer;
+    font-weight: 700;
+    font-size:medium;
+    transition: background-color 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #0f4c75; /* Màu nền khi hover */
+    color: #ffffff; /* Màu chữ khi hover */
+    
+}

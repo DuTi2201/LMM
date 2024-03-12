@@ -10,3 +10,8 @@ git push -u origin main
 git remote add origin https://github.com/DuTi2201/LMM.git
 git branch -M main
 git push -u origin main
+
+
+
+Sequelize: npx sequelize-cli db:migrate
+Create Fk on MySQL: ALTER TABLE Activity_Logs ADD CONSTRAINT FK_accountActivityLog FOREIGN KEY (account_id) REFERENCES Accounts (id);

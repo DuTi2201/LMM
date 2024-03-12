@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Materials Management</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Nobile&family=Mohave:wght@400&family=Amasis+MT+Pro+Medium&display=swap">
+    <link rel="stylesheet" type="text/css" href="/public/css/managementMaterial.css">
+    <link rel="icon" href="../public/image/LOGO_LMM.svg" type="image/x-icon">
+
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="/home">
+
+            <img src="../public/image/baner.svg" alt="Logo" href="/home">
+
+        </a>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/courses">Courses</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+        <nav class="usermenu">
+            <ul>
+                <span class="logout">You are logged in! ( <a href="/logout">Log out</a>)</span>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main class="nav-drawer">
+        <div class="panel" id="panel">
+            <h2>Dashboard</h2>
+            <ul>
+                <li class="accMana" id="add-btn"> <a href="/account-management">Account Management</a></li>
+                <li id="add-btn"> <a href="/material-management">Material Management</a></li>
+                <li class="accMana" id="add-btn"> <a href="/subject-management">Subject Management</a></li>
+            </ul>
+        </div>
+
+        <div class="contentForm">
+            <h1>Create New Subject</h1>
+        </div>
+        <form class="contentForm col-md-8" action="/material-management/create-material/material-created" method="POST">
+
+            <div class="syllabusID inform">
+                <input type="text" name="syllabus_id" id="syllabus_id" placeholder="Syllabus ID">
+            </div>
+            <div class="subjectCode inform">
+                <input type="text" name="subject_id" id="subject_id" placeholder="Subject ID">
+            </div>
+            <div class="subjectName inform">
+                <input type="text" name="subject_name" id="subject_name" placeholder="Subject Name">
+            </div>
+
+            <div class="materialDescription inform">
+                <input name="material_description" id="material_description" rows="5"
+                    placeholder="Material Description"></input>
+            </div>
+            <div class="author inform">
+                <input type="text" name="author" id="author" placeholder="Author">
+            </div>
+            <div class="isbn inform">
+                <input type="text" name="isbn" id="isbn" placeholder="ISBN">
+            </div>
+            <div class="publisher inform">
+                <input type="text" name="publisher" id="publisher" placeholder="Publisher">
+            </div>
+            <div class="edition inform">
+                <input type="text" name="edition" id="edition" placeholder="Edition">
+            </div>
+            <div class="note inform">
+                <textarea name="note" id="note" rows="5" placeholder="Note"></textarea>
+            </div>
+            <div class="form-group ">
+                <label for="classification">Classification: </label>
+                <select name="classification" id="classification">
+                    <option value="isOnline">Is Online</option>
+                    <option value="isHardCopy">Is Hard Copy</option>
+                    <option value="isMainMaterial">Is Main Material</option>
+                </select>
+            </div>
+
+            <button class="add-user-btn" type="submit" name="submit" id="submit">Create</button>
+
+
+
+            </div>
+        </form>
+    </main>
+
+</body>
+
+</html>

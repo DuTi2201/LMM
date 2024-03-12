@@ -12,24 +12,28 @@ module.exports = {
         type: Sequelize.STRING
       },
       comment_date: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       comment_parent_id: {
         type: Sequelize.INTEGER
       },
       syllabus_id: {
         type: Sequelize.INTEGER
+        
       },
       account_id: {
         type: Sequelize.INTEGER
+        
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },

@@ -26,10 +26,10 @@
     </ul>
     <div class="usermenu">
       <ul>
-          <span class="logout">You are logged in! (  <a href="/logout">Log out</a>)</span>
-          
+        <span class="logout">You are logged in! ( <a href="/logout">Log out</a>)</span>
+
       </ul>
-  </div>
+    </div>
     <div class="hamburger">
       <span class="line"></span>
       <span class="line"></span>
@@ -45,11 +45,10 @@
 
     </ul>
   </div>
-
   <main class="nav-drawer">
     <div class="contentForm" id="form">
       <div class="container">
-        <h1>Subjects Management</h1>
+        <h1>Material Management</h1>
 
         <div class="filter-search">
           <select name="filter" id="filter">
@@ -61,7 +60,7 @@
           <button id="search-btn">Search</button>
         </div>
         <div class="add-user">
-          <a href="/subject-management/create-subjects"><button id="add-user-btn">New Subject</button> </a>
+          <a href="/material-management/create-material"><button id="add-user-btn">New Material</button> </a>
 
         </div>
         <div class="info-board">
@@ -69,31 +68,47 @@
             <thead>
               <tr class="row-hover">
                 <th>ID</th>
-                <th>Subject Name</th>
                 <th>Description</th>
-                <th>Type</th>
+                <th>Author</th>
+                <th>Publicser</th>
+                <th>ISBN</th>
+                <th>Edition</th>
+                <th>Classification</th>
+                <th>Note</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <% subjectList.forEach(function(item, index){ %>
+              <% materialList.forEach(function(item, index){ %>
                 <tr class="row-hover">
                   <td>
                     <%= item.id %>
                   </td>
                   <td>
-                    <%= item.subject_name %>
+                    <%= item.material_description %>
                   </td>
                   <td>
-                    <%= item.subject_description %>
+                    <%= item.author %>
                   </td>
                   <td>
-                    <%= item.subject_type %>
+                    <%= item.publicser %>
                   </td>
                   <td>
-                    <a style="display: inline;" href="/subject-management/update-subjects/<%= item.id %>"><button
-                        class="edit-btn" type="submit">Edit</button></a>
-                    <form style="display: inline;" action="/subject-management/delete-subject/<%= item.id %>"
+                    <%= item.isbn %>
+                  </td>
+                  <td>
+                    <%= item.edition %>
+                  </td>
+                  <td>
+                    <%= item.classification %>
+                  </td>
+                  <td>
+                    <%= item.note %>
+                  </td>
+
+                  <td>
+                    <!-- <a style="display: inline;" href="/subject-management/edit-profile/<%= item.id %>" ><button class="edit-btn" type="submit">Edit</button></a> -->
+                    <form style="display: inline;" action="/material-management/delete-material/<%= item.id %>"
                       method="POST"><button class="delete-btn" type="submit">Delete</button></form>
 
                   </td>
@@ -122,6 +137,5 @@
 
   </script>
 </body>
-
 
 </html>

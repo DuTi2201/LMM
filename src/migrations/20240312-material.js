@@ -1,20 +1,43 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Curriculum_POs', {
+    await queryInterface.createTable('Materials', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      curriculum_id: {
-        type: Sequelize.INTEGER
-       
+      material_description: {
+        type: Sequelize.STRING
       },
-      po_id: {
+      author: {
+        type: Sequelize.STRING
+      },
+      publisher: {
+        type: Sequelize.STRING
+      },
+      isbn: {
+        type: Sequelize.STRING
+      },
+      edition: {
+        type: Sequelize.STRING
+      },
+      classification: {
+        type: Sequelize.STRING
+      },
+      note: {
+        type: Sequelize.MEDIUMTEXT
+      },
+      syllabus_id: {
         type: Sequelize.INTEGER
-      
+        
+      },
+      subject_id: {
+        type: Sequelize.INTEGER
+      },
+      subject_name: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +52,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Curriculum_POs');
+    await queryInterface.dropTable('Materials');
   }
 };

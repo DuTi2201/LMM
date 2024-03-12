@@ -1,29 +1,32 @@
 import express from "express";
 import homeController, { getHomePage } from "../controller/common/homeController";
 import loginController, { getLoginPage } from "../controller/common/loginController";
-import editProfileController, { getEditProfilePage } from "../controller/accountManagement/editProfileController";
-import addMaterialController, { getAddMaterial } from "../controller/materialManagement/addMaterialController";
-import managemenController, { getManagementMaterial } from "../controller/materialManagement/materialManagementController";
-import searchMaterialController, { getSearchMaterial } from "../controller/materialManagement/searchMaterialController";
-import accountManageController, { getAccountManage } from "../controller/accountManagement/accountManageController";
-import addUserController, { getAddNewUser } from "../controller/accountManagement/addUserController";
+import materialManagementController, { getManagementMaterial,getCreateMaterial,handleDeleteMaterial,createdMaterial } from "../controller/materialManagement/materialManagementController";
+import accountManageController, { getAccountManage,getEditProfilePage,getAddNewUser,handleUpdateUser,handleCreateNewUser} from "../controller/accountManagement/accountManageController";
+import subjectManagementController, {createdSubject,getCreateSubject,getSubjectManagement,handleDeleteSubject,getUpdateSubject } from "../controller/subjectManagement/subjectManagementController";
 // import userController from "../controllers/userController";
 let router = express.Router();
 
 let initWebRoutes = (app) => {
     router.get('/home', homeController.getHomePage);
-    router.get('/management/add-material', addMaterialController.getAddMaterial);
-    router.get('/management/search-material', searchMaterialController.getSearchMaterial);
+    
+    // router.get('/material-management/search-material', materialManagementController.getSearchMaterial);
     router.get('/login', loginController.getLoginPage);
     router.post('/account-management/delete-user/:id', accountManageController.handleDeleteUser);
-    router.get('/management', managemenController.getManagementMaterial);
-    router.get('/account-management/edit-profile/:id', editProfileController.getEditProfilePage);
-    router.post('/account-management/edit-profile/update-user', editProfileController.handleUpdateUser);
+    router.get('/material-management', materialManagementController.getManagementMaterial);
+    router.get('/material-management/create-material', materialManagementController.getCreateMaterial);
+    router.post('/material-management/create-material/material-created', materialManagementController.createdMaterial);
+    router.post('/material-management/delete-material/:id', materialManagementController.handleDeleteMaterial);
+    router.get('/account-management/edit-profile/:id', accountManageController.getEditProfilePage);
+    router.post('/account-management/edit-profile/update-user', accountManageController.handleUpdateUser);
     router.get('/account-management', accountManageController.getAccountManage);
-    router.get('/account-management/add-newUser', addUserController.getAddNewUser);
-    router.post('/account-management/add-newUser/create-user', addUserController.handleCreateNewUser);
-    // router.get('/delete-crud', homeController.deleteCRUD);
-    // router.post('/api/login', userController.handleLogin);
+    router.get('/account-management/add-newUser', accountManageController.getAddNewUser);
+    router.post('/account-management/add-newUser/create-user', accountManageController.handleCreateNewUser);
+    router.get('/subject-management', subjectManagementController.getSubjectManagement);
+    router.get('/subject-management/create-subjects', subjectManagementController.getCreateSubject);
+    router.post('/subject-management/create-subjects/subject-created', subjectManagementController.createdSubject);
+    router.post('/subject-management/delete-subject/:id', subjectManagementController.handleDeleteSubject);
+    router.get('/subject-management/update-subjects/:id', subjectManagementController.getUpdateSubject);
     // router.get('/api/get-all-users', userController.handleGetAllUsers);
     // router.post('/api/create-new-user', userController.handleCreateNewUser);
     // router.put('/api/edit-user', userController.handleEditUser);

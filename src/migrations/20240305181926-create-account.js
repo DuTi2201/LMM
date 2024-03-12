@@ -34,6 +34,7 @@ module.exports = {
       },
       role_id: {
         type: Sequelize.INTEGER
+        
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +47,8 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
+
+
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Accounts');
