@@ -13,9 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Curriculum.init({
+    curriculum_code: DataTypes.STRING,
     curriculum_name: DataTypes.STRING,
     curriculum_description: DataTypes.STRING,
-    curriculum_status: DataTypes.STRING
+    total_credits: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Curriculum',

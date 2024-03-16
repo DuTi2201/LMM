@@ -32,7 +32,7 @@ body {
   }
   
   /* Định dạng các input trong form đăng nhập */
-  input[type=text], input[type=password] {
+  input[type=text], input[type=password], input[type=email] {
     width: 90%;
     padding: 15px;
     margin: 10px 0;
@@ -42,7 +42,7 @@ body {
   }
   
   /* Thay đổi màu nền của input khi được focus */
-  input[type=text]:focus, input[type=password]:focus {
+  input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
     background-color: #e6e6e6;
   }
   

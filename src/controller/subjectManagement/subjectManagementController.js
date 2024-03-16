@@ -1,10 +1,16 @@
 import { query } from 'express';
 import subjectService from "../../service/subjectService";
-let getSubjectManagement = async (req, res) => {
-    let subjectList = await subjectService.getSubjectList();
-    return res.render('subjectManagement/viewSubjectDetail.ejs', {subjectList});
 
+let getSubjectManagement = async (req, res) => {
+    try {
+        let subjectList = await subjectService.getSubjectList();
+        return res.render('subjectManagement/viewSubjectDetail.ejs', { subjectList: subjectList });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("Internal Server Error");
+    }
 }
+
 
 const handleDeleteSubject = async(req, res) => {
     await subjectService.deleteSubject(req.params.id);
@@ -14,7 +20,7 @@ const handleDeleteSubject = async(req, res) => {
 let getCreateSubject = async (req, res) => {
     try {
 
-        return res.render('../views/subjectManagement/createSubject.ejs', {
+        return res.render('subjectManagement/createSubject.ejs', {
         })
     } catch (e) {
         console.log(e)
@@ -23,10 +29,11 @@ let getCreateSubject = async (req, res) => {
 }
 
 const createdSubject =  (req, res) => {
-      let subject_name = req.body.subject_name;
+    let subject_name = req.body.subject_name;
+    let subject_code = req.body.subject_code;
       let subject_description = req.body.subject_description;
-      let subject_type = req.body.subject_type;
-      subjectService.createNewSubject(subject_name, subject_description, subject_type);
+      let total_credits = req.body.total_credits;
+      subjectService.createNewSubject(subject_code, subject_name, subject_description, total_credits);
      
       return res.redirect('/subject-management');
 
@@ -48,12 +55,13 @@ const getUpdateSubject = async (req, res) => {
 }
 const handleUpdateSubject = async (req, res) => {
     let id = req.body.id;
+    let subject_code = req.body.subject_code;
     let subject_name = req.body.subject_name;
     let subject_description = req.body.subject_description;
-    let subject_type = req.body.subject_type;
+    let total_credits = req.body.total_credits;
 
     
-    await userService.updateSubjectInfor(id, subject_name, subject_description, subject_type);
+    await subjectService.updateSubjectInfor(id, subject_code, subject_name, subject_description, total_credits);
    
     return res.redirect('/subject-management');
 }

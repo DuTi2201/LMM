@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Subject.init({
+    subject_code: DataTypes.STRING,
     subject_name: DataTypes.STRING,
     subject_description: DataTypes.STRING,
     subject_type: DataTypes.STRING

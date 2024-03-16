@@ -1,0 +1,30 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/public/css/navbar.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var sidebarToggle = document.getElementById('sidebarToggle');
+            var sidebar = document.querySelector('.sidebar');
+            // var wrapper = document.getElementById('wrapper');
+
+            sidebarToggle.addEventListener('click', function () {
+                sidebar.classList.toggle('active');
+                // wrapper.classList.toggle('toggled'); 
+            });
+
+            // ...
+        });
+
+    </script>
+</head>
+<div class="navbar-brand">
+    <button id="sidebarToggle" class="sidebar-toggle">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
+    <a href="/">
+        <img src="../public/image/logo192.png" class="logo" href="/home" alt="logo" />
+    </a>
+</div>
+
+

@@ -8,13 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      curriculum_code: {
+        type: Sequelize.STRING
+      },
       curriculum_name: {
         type: Sequelize.STRING
       },
       curriculum_description: {
         type: Sequelize.STRING
       },
-      curriculum_status: {
+      total_credits: {
         type: Sequelize.STRING
       },
       createdAt: {
