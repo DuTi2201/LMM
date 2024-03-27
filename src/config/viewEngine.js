@@ -1,10 +1,12 @@
 import express from "express";
-import ejs from "ejs";
-
-let configViewEngine = (app) => {
-    app.use("/public", express.static("./src/public"));
+/**
+ * Config view engine for app
+ */
+let configViewEngine = (app)=> {
+    app.use(express.static("./src/public"));
     app.set("view engine", "ejs");
-    app.set("views", "./src/views");
-}
+    app.set("views","./src/views");
+};
 
 module.exports = configViewEngine;
+

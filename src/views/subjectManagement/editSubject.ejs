@@ -12,7 +12,6 @@
 </head>
 
 <body>
-  <%- include('../partials/navbar/mainNavbar.ejs') %>
     <div class="wrapper" id="wrapper">
 
         <main class="nav-drawer page-content-wrapper" id="page-content-wrapper">
@@ -21,6 +20,7 @@
         <div class="container">
           <h1>Update Subject</h1>
           <div class="col-md-8">
+            <input hidden name="id" value="<%=subjectData.id %>" />
             <div class="form-group">
               <input  type="text" name="subject_code" id="subject_code" value="<%=subjectData.subject_code %>">
             </div>
@@ -29,6 +29,9 @@
               <input type="text" name="subject_name" id="subject_name" value="<%=subjectData.subject_name %>">
             </div>
             <div class="form-group">
+              <!-- <textarea type="text" name="subject_description" id="subject_description" value="<%=subjectData.subject_description %>">
+
+              </textarea> -->
               <input type="text" name="subject_description" id="subject_description"
                 value="<%=subjectData.subject_description %>">
             </div>

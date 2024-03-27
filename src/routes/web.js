@@ -1,58 +1,54 @@
 import express from "express";
-import passport from 'passport';
-import homeController, { getHomePage } from "../controller/common/homeController";
-import loginController, { getLoginPage } from "../controller/common/loginController";
-import materialManagementController, { getManagementMaterial, getCreateMaterial, handleDeleteMaterial, createdMaterial } from "../controller/materialManagement/materialManagementController";
-import accountManageController, { getAccountManage, getEditProfilePage, getAddNewUser, handleUpdateUser, handleCreateNewUser } from "../controller/accountManagement/accountManageController";
-import subjectManagementController, { createdSubject, getCreateSubject, getSubjectManagement, handleDeleteSubject, getUpdateSubject } from "../controller/subjectManagement/subjectManagementController";
-import curriculumManagementController, { createdCurriculum, getCreateCurriculum, getCurriculumManagement, handleDeleteCurriculum, getUpdateCurriculum, handleUpdateCurriculum } from "../controller/curriculumManagement/curriculumManagementController";
+import homePageController from "../controllers/homePageController";
+import registerController from "../controllers/registerController";
+import loginController from "../controllers/loginController";
+import auth from "../validation/authValidation";
+import passport from "passport";
+import initPassportLocal from "../controllers/passportLocalController";
+import accountManagementController from "../controllers/accountManagementController";
+import curriculumManagementController from "../controllers/curriculumManagementController";
+import subjectManagementController from "../controllers/subjectManagementController";
+import JWTAction from "../middleware/JWTAction";
+// Init all passport
+initPassportLocal();
+
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-  router.get('/home', homeController.getHomePage);
+    // router.all('*', JWTAction.checkUserJWT, JWTAction.checkUserPermission);
+    router.get("/", loginController.checkLoggedIn, homePageController.handleHelloWorld);
+    router.get("/login", loginController.checkLoggedOut, loginController.getPageLogin);
+    router.post("/login", passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "/login",
+        successFlash: true,
+        failureFlash: true
+    }));
 
-  // router.get('/material-management/search-material', materialManagementController.getSearchMaterial);
-  router.get('/login', loginController.getLoginPage);
-  router.post('/account-management/delete-user/:id', accountManageController.handleDeleteUser);
-  router.get('/material-management', materialManagementController.getManagementMaterial);
-  router.get('/material-management/create-material', materialManagementController.getCreateMaterial);
-  router.post('/material-management/create-material/material-created', materialManagementController.createdMaterial);
-  router.post('/material-management/delete-material/:id', materialManagementController.handleDeleteMaterial);
-  router.get('/account-management/edit-profile/:id', accountManageController.getEditProfilePage);
-  router.post('/account-management/edit-profile/updated-user', accountManageController.handleUpdateUser);
-  router.get('/account-management', accountManageController.getAccountManage);
-  router.get('/account-management/add-newUser', accountManageController.getAddNewUser);
-  router.post('/account-management/add-newUser/create-user', accountManageController.handleCreateNewUser);
-  router.get('/subject-management', subjectManagementController.getSubjectManagement);
-  router.get('/subject-management/create-subjects', subjectManagementController.getCreateSubject);
-  router.post('/subject-management/create-subjects/subject-created', subjectManagementController.createdSubject);
-  router.post('/subject-management/delete-subject/:id', subjectManagementController.handleDeleteSubject);
-  router.get('/subject-management/update-subjects/:id', subjectManagementController.getUpdateSubject);
-  router.post('/subject-management/update-subjects/subject-updated', subjectManagementController.handleUpdateSubject);
-  router.get('/subject-management', subjectManagementController.getSubjectManagement);
-  router.get('/subject-management/create-subjects', subjectManagementController.getCreateSubject);
-  router.post('/subject-management/create-subjects/subject-created', subjectManagementController.createdSubject);
-  router.post('/subject-management/delete-subject/:id', subjectManagementController.handleDeleteSubject);
-  router.get('/subject-management/update-subjects/:id', subjectManagementController.getUpdateSubject);
-  router.post('/subject-management/update-subjects/subject-updated', subjectManagementController.handleUpdateSubject);
+    router.post('/account-management/delete-user/:id', accountManagementController.handleDeleteUser);
+    router.get('/account-management/edit-profile/:id', accountManagementController.getUpdateUserPage);
+    router.post('/account-management/edit-profile/updated-user', accountManagementController.handleUpdateUser);
+    router.get('/account-management', accountManagementController.getAccountManagement);
+    router.get('/account-management/add-newUser', accountManagementController.getAddNewUser);
+    router.post('/account-management/add-newUser/created-user', accountManagementController.createNewUser);
 
-  router.get('/curriculum-management', curriculumManagementController.getCurriculumManagement);
-  router.get('/curriculum-management/create-curriculum', curriculumManagementController.getCreateCurriculum);
-  router.post('/curriculum-management/create-curriculum/curriculum-created', curriculumManagementController.createdCurriculum);
-  router.post('/curriculum-management/delete-curriculum/:id', curriculumManagementController.handleDeleteCurriculum);
-  router.get('/curriculum-management/update-curriculum/:id', curriculumManagementController.getUpdateCurriculum);
-  router.post('/curriculum-management/update-curriculum/curriculum-updated', curriculumManagementController.handleUpdateCurriculum);
-  // router.get('/api/get-all-users', userController.handleGetAllUsers);
-  // router.post('/api/create-new-user', userController.handleCreateNewUser);
-  // router.put('/api/edit-user', userController.handleEditUser);
-  // router.delete('/api/delete-user', userController.handleDeleteUser);
+    router.get('/curriculum-management', curriculumManagementController.getCurriculumManagement);
+    router.get('/curriculum-management/create-curriculum', curriculumManagementController.getCreateCurriculum);
+    router.post('/curriculum-management/create-curriculum/curriculum-created', curriculumManagementController.createdCurriculum);
+    router.post('/curriculum-management/delete-curriculum/:id', curriculumManagementController.handleDeleteCurriculum);
+    router.get('/curriculum-management/update-curriculum/:id', curriculumManagementController.getUpdateCurriculum);
+    router.post('/curriculum-management/update-curriculum/curriculum-updated', curriculumManagementController.handleUpdateCurriculum);
 
-  router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-  }));
+    router.get('/subject-management', subjectManagementController.getSubjectManagement);
+    router.get('/subject-management/create-subjects', subjectManagementController.getCreateSubject);
+    router.post('/subject-management/create-subjects/subject-created', subjectManagementController.createdSubject);
+    router.post('/subject-management/delete-subject/:id', subjectManagementController.handleDeleteSubject);
+    router.get('/subject-management/update-subjects/:id', subjectManagementController.getUpdateSubject);
+    router.post('/subject-management/update-subjects/subject-updated', subjectManagementController.handleUpdateSubject);
 
-  return app.use("/", router);
-}
-
+    router.get("/register", registerController.getPageRegister);
+    router.post("/register", auth.validateRegister, registerController.createNewUser);
+    router.post("/logout", loginController.postLogOut);
+    return app.use("/", router);
+};
 module.exports = initWebRoutes;

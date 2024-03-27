@@ -4,19 +4,32 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Curriculum extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      // define association here
-      Curriculum.belongsToMany(Account, { through: 'Curriculum_Authorization' });
-      Curriculum.belongsToMany(Subject, { through: 'Curriculum_Subject' });
-      Curriculum.belongsToMany(PO, { through: 'Curriculum_PO' });
-      Curriculum.hasOne(Schedule);
+      Curriculum.belongsToMany(models.File, {
+        through: 'Curriculum_File',
+        foreignKey: 'curriculum_id',
+        as: 'file'
+      });
+      
+      Curriculum.belongsToMany(models.Subject, {
+        through: 'Curriculum_Subject',
+        foreignKey: 'curriculum_id',
+        as: 'subject'
+      });
+      
     }
   };
   Curriculum.init({
-    curriculum_code: DataTypes.STRING,
     curriculum_name: DataTypes.STRING,
+    curriculum_code: DataTypes.STRING,
     curriculum_description: DataTypes.STRING,
     total_credits: DataTypes.STRING
+    
   }, {
     sequelize,
     modelName: 'Curriculum',
