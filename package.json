@@ -1,31 +1,40 @@
 {
-  "name": "lmm",
+  "name": "lmms",
   "version": "1.0.0",
+  "description": "LMM System",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node src/server.js"
   },
-  "author": "DuTi",
+  "author": "Duti2201",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "2.4.3",
-    "bluebird": "3.7.2",
+    "@babel/core": "7.15.4",
+    "@babel/node": "7.15.4",
+    "@babel/preset-env": "7.15.4",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "1.4.6",
     "dotenv": "^8.2.0",
-    "ejs": "^3.1.5",
-    "express": "^4.17.1",
-    "mysql2": "2.3.3",
-    "passport": "0.6.0",
-    "passport-local": "1.0.0",
+    "ejs": "^3.1.2",
+    "express": "^4.19.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.5.0",
+    "jsonwebtoken": "9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "sequelize": "6.13.0",
     "sequelize-cli": "6.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.10"
-  },
-  "description": ""
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "2.0.15"
+  }
 }

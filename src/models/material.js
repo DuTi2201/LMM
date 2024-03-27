@@ -10,24 +10,28 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      Material.belongsToMany(Syllabus, { through: 'Material_Syllabus' });
+      Material.belongsToMany(models.File, {
+        through: 'Material_File',
+        foreignKey: 'material_id',
+        as: 'file'
+      });
+
+      Material.belongsToMany(models.User, {
+        through: 'Material_User',
+        foreignKey: 'material_id',
+        as: 'user'
+      });
+      Material.belongsToMany(models.Subject, {
+        through: 'Material_Subject',
+        foreignKey: 'material_id',
+        as: 'subject'
+      });
     }
   };
   Material.init({
-    
-    material_description: DataTypes.STRING,
-    author: DataTypes.STRING,
-    publisher: DataTypes.STRING,
-    isbn: DataTypes.STRING,
-    edition: DataTypes.STRING,
-    classification: DataTypes.STRING,
-    note: DataTypes.MEDIUMTEXT,
-    syllabus_id: DataTypes.INTEGER,
-    subject_id: DataTypes.INTEGER,
-    subject_name: DataTypes.STRING
-  },
-    {
+    name: DataTypes.STRING,
+    description: DataTypes.STRING
+  }, {
     sequelize,
     modelName: 'Material',
   });

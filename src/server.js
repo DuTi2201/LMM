@@ -1,51 +1,59 @@
+require('dotenv').config();
 import express from "express";
+import expressLayout from 'express-ejs-layouts';
+import configViewEngine from "./config/viewEngine";
+import initWebRoutes from "./routes/web";
 import bodyParser from "body-parser";
 import cookieParser from 'cookie-parser';
-import configViewEngine from './config/viewEngine';
-import initWebRoutes from './routes/web';
-import initApiRoutes from './routes/api';
-import configCors from './config/cors';
-import connectDB from './config/connectDB';
-import { configPassport } from './controller/passportController'; 
-// import cors from 'cors';
+import session from "express-session";
+import connectFlash from "connect-flash";
+// import connection from "./config/connectDB";
+import passport from "passport";
 
-require('dotenv').config();
 let app = express();
-//staticFile
-// app.use(cors({ origin: true }));
 
-// //config cors
-// configCors(app);
 
-//config view engine
-configViewEngine(app);
 
-//config body parser
+//config session
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 // 86400000 1 day
+    }
+}));
+
+// Enable body parser post data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//cofig cookie-parser
+//use cookie parser
 app.use(cookieParser());
 
+//Config view engine
+configViewEngine(app);
 
-//connection db
-connectDB();
+//Enable flash message
+app.use(connectFlash());
 
+app.use(express.static('public'));
 
-//init web routes
+// Templating Engine
+app.use(expressLayout);
+app.set('layout', './layouts/main');
+app.set('view engine', 'ejs');
+
+//Config passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// init all web routes
 initWebRoutes(app);
-// initApiRoutes(app);
 
-//req =>middleware => res
 app.use((req, res) => {
     return res.send('404 not found')
 })
 
-configPassport();
-
-
-let port = process.env.PORT;
-
-app.listen(port, () => {
-    console.log("Backend Nodejs is running on the port: " + port)
-})
+let port = process.env.PORT || 8080;
+app.listen(port, () => console.log(`Building LMM system is running on port ${port}!`));
