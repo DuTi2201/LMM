@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'file_id',
         as: 'curriculum'
       });
+      File.belongsToMany(models.Subject, {
+        through: 'File_Subject',
+        foreignKey: 'file_id',
+        as: 'subject'
+      });
     }
   };
   File.init({

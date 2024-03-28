@@ -27,7 +27,7 @@ const getSubjectList = async () => {
     
 }
 
-const createNewSubject = async (rawSubjectData) => {
+const createnewSubject = async (rawSubjectData, fileInfo) => {
     try {
         //check curriculum_code are exist
         let isCodeExist = await checkSubjectCodeExist(rawSubjectData.subject_code);
@@ -37,14 +37,22 @@ const createNewSubject = async (rawSubjectData) => {
                 EC: 1
             }
         }
-        await db.Subject.create({
+        
+        let newFile = await db.File.create(fileInfo);
+        let newSubject = {
             subject_name: rawSubjectData.subject_name,
             subject_code: rawSubjectData.subject_code,
             subject_description: rawSubjectData.subject_description,
             subject_type: rawSubjectData.subject_type
-        })
+        };
+        let createdSubject = await db.Subject.create(newSubject);
+
+        await db.File_Subject.create({
+            subject_id: createdSubject.id,
+            file_id: newFile.id
+          });
         return {
-            EM: "Create a new subject successful",
+            EM: "Create a new curriculum successful",
             EC: '0'
         }
     } catch (e) {
@@ -55,6 +63,36 @@ const createNewSubject = async (rawSubjectData) => {
         }
     }
 }
+
+
+// const createNewSubject = async (rawSubjectData) => {
+//     try {
+//         //check curriculum_code are exist
+//         let isCodeExist = await checkSubjectCodeExist(rawSubjectData.subject_code);
+//         if (isCodeExist === true) {
+//             return {
+//                 EM: "The Subject Code is already exist!",
+//                 EC: 1
+//             }
+//         }
+//         await db.Subject.create({
+//             subject_name: rawSubjectData.subject_name,
+//             subject_code: rawSubjectData.subject_code,
+//             subject_description: rawSubjectData.subject_description,
+//             subject_type: rawSubjectData.subject_type
+//         })
+//         return {
+//             EM: "Create a new subject successful",
+//             EC: '0'
+//         }
+//     } catch (e) {
+//         console.log(e)
+//         return {
+//             EM: "Something Wrong...",
+//             EC: -2
+//         }
+//     }
+// }
 
 const findSubjectById = async (id) => {
     let subjct = {};
@@ -85,7 +123,21 @@ const deleteSubject = async (subjectId) => {
    
 };
 
+const getSubjectsByCurriculum = async (curriculumId) => {
+    let curriculumSubjects = await db.Curriculum_Subject.findAll({
+        where: { curriculum_id: curriculumId }
+    });
+    let subjectIds = curriculumSubjects.map(cs => cs.subject_id);
+    return await db.Subject.findAll({
+        where: { id: subjectIds }
+    });
+};
+
+const enrollSubject = async (userId, subjectId) => {
+    return await db.Subject_User.create({ user_id: userId, subject_id: subjectId });
+};
+
 module.exports = {
-    createNewSubject,getSubjectList,deleteSubject,findSubjectById,updateSubjectInfor,
+    createNewSubject,getSubjectList,deleteSubject,findSubjectById,updateSubjectInfor, getSubjectsByCurriculum, enrollSubject
   
 }
