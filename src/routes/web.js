@@ -47,6 +47,8 @@ let initWebRoutes = (app) => {
     router.post('/subject-management/delete-subject/:id', subjectManagementController.handleDeleteSubject);
     router.get('/subject-management/update-subjects/:id', subjectManagementController.getUpdateSubject);
     router.post('/subject-management/update-subjects/subject-updated', subjectManagementController.handleUpdateSubject);
+    router.get('/subject-enroll', subjectManagementController.getEnroll);
+    router.post('/subject-enroll/enrolled', subjectManagementController.postEnroll);
 
     router.get("/register", registerController.getPageRegister);
     router.post("/register", auth.validateRegister, registerController.createNewUser);

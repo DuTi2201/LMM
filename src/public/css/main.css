@@ -48,6 +48,10 @@ body {
     margin-right: 4px;
     color: #727272;
   }
+  .sidebar .nav-link:hover {
+    background-color: #d2eafa ;
+    color: #082b43;
+  }
   
   .sidebar .nav-link.active {
     color: #fff;

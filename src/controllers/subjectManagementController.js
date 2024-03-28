@@ -1,6 +1,7 @@
 import { query } from 'express';
 import { validationResult } from 'express-validator';
 import subjectService from "../services/subjectService";
+import curriculumService from "../services/curriculumService";
 
 let getSubjectManagement = async (req, res) => {
     try {
@@ -84,7 +85,25 @@ const handleUpdateSubject = async (req, res) => {
       console.log(err);
       return res.redirect('/subject-management'); 
     }
-  };
+};
+
+const getEnroll = async (req, res) => {
+    let curriculum = await curriculumService.getCurriculumList();
+    let subject;
+    if (req.query.curriculum) {
+        subject = await subjectService.getSubjectsByCurriculum(req.query.curriculum);
+    }
+    res.render('../views/subjectManagement/enrollSubject.ejs', { curriculum: curriculum, subject: subject });
+};
+
+const postEnroll = async (req, res) => {
+    let userId = req.session.userId; // Giả sử bạn lưu id của người dùng trong session
+    let subjectId = req.body.subject;
+    await subjectService.enrollSubject(userId, subjectId);
+    res.redirect('/'); // Chuyển hướng người dùng tới trang chủ sau khi ghi danh
+};
+
+
 
 module.exports = {
     getSubjectManagement: getSubjectManagement,
@@ -92,5 +111,7 @@ module.exports = {
     getCreateSubject: getCreateSubject,
     createdSubject: createdSubject,
     getUpdateSubject: getUpdateSubject,
-    handleUpdateSubject:handleUpdateSubject,
+    handleUpdateSubject: handleUpdateSubject,
+    getEnroll: getEnroll,
+    postEnroll:postEnroll
 }
