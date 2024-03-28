@@ -5,6 +5,7 @@ import loginController from "../controllers/loginController";
 import auth from "../validation/authValidation";
 import passport from "passport";
 import initPassportLocal from "../controllers/passportLocalController";
+import multer from 'multer';
 import accountManagementController from "../controllers/accountManagementController";
 import curriculumManagementController from "../controllers/curriculumManagementController";
 import subjectManagementController from "../controllers/subjectManagementController";
@@ -13,6 +14,7 @@ import JWTAction from "../middleware/JWTAction";
 initPassportLocal();
 
 let router = express.Router();
+let upload = multer({ dest: '../public/uploads' });
 
 let initWebRoutes = (app) => {
     // router.all('*', JWTAction.checkUserJWT, JWTAction.checkUserPermission);
@@ -34,7 +36,7 @@ let initWebRoutes = (app) => {
 
     router.get('/curriculum-management', curriculumManagementController.getCurriculumManagement);
     router.get('/curriculum-management/create-curriculum', curriculumManagementController.getCreateCurriculum);
-    router.post('/curriculum-management/create-curriculum/curriculum-created', curriculumManagementController.createdCurriculum);
+    router.post('/curriculum-management/create-curriculum/curriculum-created', upload.single('file_upload'), curriculumManagementController.createdCurriculum);
     router.post('/curriculum-management/delete-curriculum/:id', curriculumManagementController.handleDeleteCurriculum);
     router.get('/curriculum-management/update-curriculum/:id', curriculumManagementController.getUpdateCurriculum);
     router.post('/curriculum-management/update-curriculum/curriculum-updated', curriculumManagementController.handleUpdateCurriculum);

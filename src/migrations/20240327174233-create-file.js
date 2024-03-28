@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      file_name: {
+        type: Sequelize.STRING
+      },
       file_upload: {
         type: Sequelize.STRING
       },

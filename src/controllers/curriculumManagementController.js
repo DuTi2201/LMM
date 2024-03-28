@@ -36,7 +36,17 @@ let createdCurriculum = async (req, res) => {
         req.flash("errors", errorsArr);
         return res.redirect("/account-management");
     }
-    //create a new user
+
+    
+
+    //create a new curriculum
+    let fileInfo = {
+        file_name: req.file.originalname,
+        file_upload: req.file.filename,
+        file_path: req.file.path,
+        file_size: req.file.size,
+        mimetype: req.file.mimetype
+      };
     let newCurriculum = {
         curriculum_name: req.body.curriculum_name,
         curriculum_code: req.body.curriculum_code,
@@ -44,7 +54,7 @@ let createdCurriculum = async (req, res) => {
         total_credits: req.body.total_credits
     };
     try {
-        await curriculumService.createNewCurriculum(newCurriculum);
+        await curriculumService.createNewCurriculum(newCurriculum, fileInfo);
         return res.redirect("/curriculum-management");
     } catch (err) {
         req.flash("errors", err);
@@ -53,10 +63,10 @@ let createdCurriculum = async (req, res) => {
 };
 
 const getUpdateCurriculum = async (req, res) => {
-        let id = req.params.id;
-        let curriculum = await curriculumService.findCurriculumById(id);
-        let curriculumData = curriculum;
-        return res.render('../views/curriculumManagement/editCurriculum.ejs', { curriculumData })
+    let id = req.params.id;
+    let curriculum = await curriculumService.findCurriculumById(id);
+    let curriculumData = curriculum;
+    return res.render('../views/curriculumManagement/editCurriculum.ejs', { curriculumData })
 };
 
 const handleUpdateCurriculum = async (req, res) => {
@@ -67,16 +77,16 @@ const handleUpdateCurriculum = async (req, res) => {
         total_credits: req.body.total_credits
     };
     try {
-      await curriculumService.updateCurriculumInfor(updateCurriculum.curriculum_name, updateCurriculum.curriculum_description, updateCurriculum.total_credits, updateCurriculum.id);
-      return res.redirect('/curriculum-management')
+        await curriculumService.updateCurriculumInfor(updateCurriculum.curriculum_name, updateCurriculum.curriculum_description, updateCurriculum.total_credits, updateCurriculum.id);
+        return res.redirect('/curriculum-management')
     } catch (err) {
-      console.log(err);
-      return res.redirect('/curriculum-management'); 
+        console.log(err);
+        return res.redirect('/curriculum-management');
     }
-  };
+};
 
- 
-  
+
+
 
 module.exports = {
     getCurriculumManagement: getCurriculumManagement,
