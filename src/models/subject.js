@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Subject.belongsToMany(models.Curriculum, {
-        through: 'Curriculum_File',
+        through: 'Curriculum_Subject',
         foreignKey: 'subject_id',
         as: 'curriculum'
       });

@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   File.init({
+    file_name: DataTypes.STRING,
     file_upload: DataTypes.STRING,
     file_path: DataTypes.STRING,
     file_size: DataTypes.BIGINT,

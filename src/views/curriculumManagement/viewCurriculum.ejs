@@ -16,47 +16,55 @@
   <div class="wrapper" id="wrapper">
       <main class="nav-drawer page-content-wrapper" id="page-content-wrapper">
           <div class="contentForm" id="form">
-              <div class="container">
-                  <h1>Curriculums Management</h1>
-                  <div class="add-user">
-                      <a href="/curriculum-management/create-curriculum"><button id="add-user-btn">New Curriculum</button> </a>
-                  </div>
-                  <div class="info-board">
-                      <table class="table-hover">
-                          <thead>
-                              <tr class="row-hover">
-                                  <th>ID</th>
-                                  <th>Curriculum Code</th>
-                                  <th>Curriculum Name</th>
-                                  <th>Description</th>
-                                  <th>Total Credits</th>
-                                  <th>Action</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <% if (curriculumList && Array.isArray(curriculumList)) { %>
-                                  <% curriculumList.forEach(function(item, index) { %>
-                                      <tr class="row-hover">
-                                          <td><%= item.id %></td>
-                                          <td><%= item.curriculum_code %></td>
-                                          <td><%= item.curriculum_name %></td>
-                                          <td><%= item.curriculum_description %></td>
-                                          <td><%= item.total_credits %></td>
-                                          <td>
-                                              <a style="display: inline;" href="/curriculum-management/update-curriculum/<%= item.id %>"><button class="edit-btn" type="submit">Edit</button></a>
-                                              <form style="display: inline;" action="/curriculum-management/delete-curriculum/<%= item.id %>" method="POST"><button class="delete-btn" type="submit">Delete</button></form>
-                                          </td>
-                                      </tr>
-                                  <% }) %>
-                              <% } else { %>
-                                  <tr>
-                                      <td colspan="6">No curriculums found.</td>
+            <div class="container">
+                <h1>Curriculums Management</h1>
+                <div class="add-user">
+                    <a href="/curriculum-management/create-curriculum"><button id="add-user-btn">New Curriculum</button></a>
+                </div>
+                <div class="info-board">
+                    <table class="table-hover">
+                        <thead>
+                            <tr class="row-hover">
+                                <th>ID</th>
+                                <th>Curriculum Code</th>
+                                <th>Curriculum Name</th>
+                                <th>Description</th>
+                                <th>Total Credits</th>
+                                <th>FileName <br/>File Path</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (curriculumList && Array.isArray(curriculumList)) { %>
+                            <% curriculumList.forEach(function(item, index) { %>
+                                <tr class="row-hover">
+                                    <td><%= item.id %></td>
+                                    <td><%= item.curriculum_code %></td>
+                                    <td><%= item.curriculum_name %></td>
+                                    <td><%= item.curriculum_description %></td>
+                                    <td><%= item.total_credits %></td>
+                                    <td>
+                                      <% item.file.forEach(function(file) { %>
+                                        <p><%= file.file_name %><br /><%= file.file_upload %></p>
+                                      
+                                      <% }) %>
+                                    </td>
+                                    <td>
+                                      <a style="display: inline;" href="/curriculum-management/update-curriculum/<%= item.id %>"><button class="edit-btn" type="submit">Edit</button></a>
+                                      <form style="display: inline;" action="/curriculum-management/delete-curriculum/<%= item.id %>" method="POST"><button class="delete-btn" type="submit">Delete</button></form>
+                                    </td>
                                   </tr>
-                              <% } %>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
+                            <% }) %>
+                            <% } else { %>
+                            <tr>
+                                <td colspan="7">No curriculums found.</td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
           </div>
       </main>
   </div>
