@@ -14,24 +14,27 @@ let getSubjectManagement = async (req, res) => {
 
 };
 
-const handleDeleteSubject = async(req, res) => {
+const handleDeleteSubject = async (req, res) => {
     await subjectService.deleteSubject(req.params.id);
     return res.redirect('/subject-management');
 }
 
 let getCreateSubject = async (req, res) => {
     try {
+        // Query the database to get the list of curriculum names
+        let curriculumList = await curriculumService.getCurriculumList();
 
         return res.render('../views/subjectManagement/createSubject.ejs', {
-        })
+            curriculumList: curriculumList
+        });
     } catch (e) {
         console.log(e)
     }
-
 }
 
+
+
 let createdSubject = async (req, res) => {
-    //validate required fields
     let errorsArr = [];
     let validationErrors = validationResult(req);
     if (!validationErrors.isEmpty()) {
@@ -40,10 +43,19 @@ let createdSubject = async (req, res) => {
             errorsArr.push(item.msg);
         });
         req.flash("errors", errorsArr);
-        return res.redirect("/account-management");
+        return res.redirect("/subject-management");
     }
-
-    //create a new user
+    if (!req.file) {
+        req.flash("errors", "No file uploaded");
+        return res.redirect("/subject-management");
+    }
+    let fileInfo = {
+        file_name: req.file.originalname,
+        file_upload: req.file.filename,
+        file_path: req.file.path,
+        file_size: req.file.size,
+        mimetype: req.file.mimetype
+    };
     let newSubject = {
         subject_name: req.body.subject_name,
         subject_code: req.body.subject_code,
@@ -51,7 +63,7 @@ let createdSubject = async (req, res) => {
         subject_type: req.body.subject_type
     };
     try {
-        await subjectService.createNewSubject(newSubject);
+        await subjectService.createNewSubject(newSubject, fileInfo);
         return res.redirect("/subject-management");
     } catch (err) {
         req.flash("errors", err);
@@ -59,12 +71,13 @@ let createdSubject = async (req, res) => {
     }
 };
 
+
 const getUpdateSubject = async (req, res) => {
     try {
         let id = req.params.id;
         let subject = await subjectService.findSubjectById(id);
         let subjectData = subject;
-        return res.render('subjectManagement/editSubject.ejs', {subjectData})
+        return res.render('subjectManagement/editSubject.ejs', { subjectData })
     } catch (e) {
         console.log(e)
     }
@@ -79,31 +92,39 @@ const handleUpdateSubject = async (req, res) => {
         subject_type: req.body.subject_type
     };
     try {
-      await subjectService.updateSubjectInfor(updateSubject.subject_name, updateSubject.subject_description, updateSubject.subject_type, updateSubject.id);
-      return res.redirect('/subject-management')
+        await subjectService.updateSubjectInfor(updateSubject.subject_name, updateSubject.subject_description, updateSubject.subject_type, updateSubject.id);
+        return res.redirect('/subject-management');
     } catch (err) {
-      console.log(err);
-      return res.redirect('/subject-management'); 
+        console.log(err);
+        return res.redirect('/subject-management');
     }
 };
 
 const getEnroll = async (req, res) => {
-    let curriculum = await curriculumService.getCurriculumList();
-    let subject;
-    if (req.query.curriculum) {
-        subject = await subjectService.getSubjectsByCurriculum(req.query.curriculum);
+    try {
+        let curriculum = await curriculumService.getCurriculumList();
+        let subject;
+        if (req.query.curriculum) {
+            subject = await subjectService.getSubjectsByCurriculum(req.query.curriculum);
+        }
+        res.render('../views/subjectManagement/enrollSubject.ejs', { curriculum: curriculum, subject: subject });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
     }
-    res.render('../views/subjectManagement/enrollSubject.ejs', { curriculum: curriculum, subject: subject });
 };
 
 const postEnroll = async (req, res) => {
-    let userId = req.session.userId; // Giả sử bạn lưu id của người dùng trong session
-    let subjectId = req.body.subject;
-    await subjectService.enrollSubject(userId, subjectId);
-    res.redirect('/'); // Chuyển hướng người dùng tới trang chủ sau khi ghi danh
-};
-
-
+    try {
+        let userId = req.session.userId; 
+        let subjectId = req.body.subject;
+        await subjectService.enrollSubject(userId, subjectId);
+        res.redirect('/'); // Chuyển hướng người dùng tới trang chủ sau khi ghi danh
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}; 
 
 module.exports = {
     getSubjectManagement: getSubjectManagement,
@@ -113,5 +134,5 @@ module.exports = {
     getUpdateSubject: getUpdateSubject,
     handleUpdateSubject: handleUpdateSubject,
     getEnroll: getEnroll,
-    postEnroll:postEnroll
+    postEnroll: postEnroll
 }

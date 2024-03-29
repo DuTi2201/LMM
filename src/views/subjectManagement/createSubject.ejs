@@ -16,7 +16,7 @@
 
         <main class="nav-drawer page-content-wrapper" id="page-content-wrapper">
           <div class="contentForm" id="form">
-            <form action="/subject-management/create-subjects/subject-created" method="POST">
+            <form action="/subject-management/create-subjects/subject-created" method="POST" enctype="multipart/form-data">
               <div class="container">
                 <h1>Create New Subject</h1>
                 <div class="col-md-8">
@@ -27,13 +27,15 @@
                     <input type="text" name="subject_name" id="subject_name" placeholder="Subject Name" required>
                   </div>
                   <div class="form-group">
-                    <!-- <textarea type="text" name="subject_description" id="subject_description" placeholder="Description">
-
-                    </textarea> -->
                     <input type="text" name="subject_description" id="subject_description" placeholder="Description">
                   </div>
                   <div class="form-group">
-                    <input type="text" name="subject_type" id="subject_type" placeholder="Subject Type">
+                    <label for="subject">Select Curriculum:</label><br>
+                    <select name="subject_type" id="subject_type">
+                      <% curriculumList.forEach(function(curriculum) { %>
+                          <option value="<%= curriculum.curriculum_name %>"><%= curriculum.curriculum_name %></option>
+                      <% }); %>
+                  </select>
                   </div>
                   <div class="form-group">
                     <input type="file" name="file_upload" />

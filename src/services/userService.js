@@ -1,10 +1,14 @@
 require('dotenv').config();
 import db from "../models/index";
 
-const getUserList = async() => {
-    let users = [];
-    users = await db.User.findAll();
-    return users
+const getUserList = async () => {
+  try {
+      let userList = await db.User.findAll();
+      return userList;
+  } catch (error) {
+      console.log(error);
+      throw new Error("Error while fetching user list");
+  }
 }
 
 const deleteUser = async (userId) => {
@@ -34,13 +38,6 @@ const updateUserInfor = async (firstName, lastName, phonenumber, gender, id ) =>
       throw err;
     }
   };
-
-// const updateUserInfor = async(firstName, lastName, phonenumber, id) => {
-//      await db.User.update(
-//         {firstName:firstName, lastName:lastName, phonenumber:phonenumber },
-//         {where: {id:req.params.id}}
-//     );
-// }
 
 module.exports = {
  getUserList,deleteUser,findUserById, updateUserInfor

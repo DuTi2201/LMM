@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curriculum Management</title>
+  <title>Subject Management</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Nobile&family=Mohave:wght@400&family=Amasis+MT+Pro+Medium&display=swap">
   <link rel="stylesheet" type="text/css" href="/public/css/concept.css">
@@ -17,41 +17,53 @@
     <main class="nav-drawer page-content-wrapper" id="page-content-wrapper">
       <div class="contentForm" id="form">
         <div class="container">
-          <h1>Curriculums Management</h1>
+          <h1>Material Management</h1>
           <div class="add-user">
-            <a href="/curriculum-management/create-curriculum"><button id="add-user-btn">New Curriculum</button></a>
+            <a href="/material-management/create-material"><button id="add-user-btn">New Material</button></a>
           </div>
           <div class="info-board">
             <table class="table-hover">
               <thead>
                 <tr class="row-hover">
                   <th>ID</th>
-                  <th>Curriculum Code</th>
-                  <th>Curriculum Name</th>
-                  <th>Description</th>
-                  <th>Total Credits</th>
+                  <th>Name</th>
+                  <th>Author</th>
+                  <th>Publicser</th>
+                  <th>ISBN</th>
+                  <th>Edition</th>
+                  <th>Classification</th>
+                  <th>Subject</th>
                   <th>FileName <br />File Path</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <% if (curriculumList && Array.isArray(curriculumList)) { %>
-                  <% curriculumList.forEach(function(item, index) { %>
+                <% if (materialList && Array.isArray(materialList)) { %>
+                  <% materialList.forEach(function(item, index) { %>
                     <tr class="row-hover">
                       <td>
                         <%= item.id %>
                       </td>
                       <td>
-                        <%= item.curriculum_code %>
+                        <%= item.material_name %>
                       </td>
                       <td>
-                        <%= item.curriculum_name %>
+                        <%= item.material_author %>
                       </td>
                       <td>
-                        <%= item.curriculum_description %>
+                        <%= item.material_publisher %>
                       </td>
                       <td>
-                        <%= item.total_credits %>
+                        <%= item.material_isbn %>
+                      </td>
+                      <td>
+                        <%= item.material_edition %>
+                      </td>
+                      <td>
+                        <%= item.material_classification %>
+                      </td>
+                      <td>
+                        <%= item.subject_id %>
                       </td>
                       <td>
                         <% item.file.forEach(function(file) { %>
@@ -63,20 +75,18 @@
                           <% }) %>
                       </td>
                       <td>
-                        <a style="display: inline;"
-                          href="/curriculum-management/update-curriculum/<%= item.id %>"><button class="edit-btn"
-                            type="submit">Edit</button></a>
-                        <form style="display: inline;" action="/curriculum-management/delete-curriculum/<%= item.id %>"
+                        <form style="display: inline;" action="/material-management/delete-material/<%= item.id %>"
                           method="POST"><button class="delete-btn" type="submit">Delete</button></form>
                       </td>
                     </tr>
                     <% }) %>
                       <% } else { %>
                         <tr>
-                          <td colspan="7">No curriculums found.</td>
+                          <td colspan="7">No materials found.</td>
                         </tr>
                         <% } %>
               </tbody>
+
             </table>
           </div>
         </div>
@@ -85,7 +95,6 @@
     </main>
   </div>
 </body>
-
 
 
 </html>

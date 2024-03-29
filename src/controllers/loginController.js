@@ -1,5 +1,6 @@
 import { validationResult } from "express-validator";
 import login_registerService from "../services/login_registerService";
+import cookieParser from 'cookie-parser';
 
 let getPageLogin = (req, res) => {
     return res.render("login.ejs", {
@@ -43,6 +44,7 @@ let checkLoggedOut = (req, res, next) => {
 };
 
 let postLogOut = (req, res) => {
+    req.clearCookie(jwt);
     req.session.destroy(function(err) {
         return res.redirect("/login");
     });

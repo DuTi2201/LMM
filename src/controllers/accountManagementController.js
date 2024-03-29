@@ -4,10 +4,16 @@ import userService from "../services/userService";
 import login_registerService from "../services/login_registerService";
 
 let getAccountManagement = async (req, res) => {
-    let userList = await userService.getUserList();
-    return res.render('../views/accountManagement/accountManage.ejs', { userList });
-
+    try {
+        let userList = await userService.getUserList();
+        return res.render('../views/accountManagement/accountManage.ejs', { userList });
+    } catch (error) {
+        console.error("Error fetching user list:", error);
+        return res.status(500).send("Error fetching user list. Please try again later.");
+    }
 };
+
+
 let handleDeleteUser = async (req, res) => {
     await userService.deleteUser(req.params.id);
     return res.redirect('/account-management');
@@ -62,41 +68,23 @@ const getUpdateUserPage = async (req, res) => {
 };
 
 const handleUpdateUser = async (req, res) => {
-    let updateUser = {
-        id: req.body.id,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        phonenumber: req.body.phonenumber,
-        gender: req.body.gender
-    };
     try {
-      await userService.updateUserInfor(updateUser.firstName, updateUser.lastName, updateUser.phonenumber, updateUser.gender, updateUser.id);
-      // Hiển thị trang chỉnh sửa người dùng với thông tin người dùng đã cập nhật
-      return res.redirect('/account-management')
-    } catch (err) {
-      console.log(err);
-      return res.redirect('/account-management'); // Hoặc bất kỳ trang nào bạn muốn chuyển hướng đến khi có lỗi
+        let updateUser = {
+            id: req.body.id,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            phonenumber: req.body.phonenumber,
+            gender: req.body.gender
+        };
+        await userService.updateUserInfor(updateUser.firstName, updateUser.lastName, updateUser.phonenumber, updateUser.gender, updateUser.id);
+        req.flash("success", "User updated successfully");
+        return res.redirect('/account-management');
+    } catch (error) {
+        console.log(error);
+        req.flash("errors", error.message);
+        return res.redirect('/account-management');
     }
-  };
-
-
-// const handleUpdateUser = async (req, res) => {
-//     let updateUser = {
-//         id: req.body.id,
-//         firstName: req.body.firstName,
-//         lastName: req.body.lastName,
-//         password: req.body.password,
-//         phonenumber: req.body.phonenumber,
-//         gender: req.body.gender
-//     };
-//     try {
-//         await userService.updateUserInfor(updateUser);
-//         return res.redirect("/account-management");
-//     } catch (err) {
-//         req.flash("errors", err);
-//         return res.redirect("/account-management");
-//     }
-// };
+};
 module.exports = {
     getAccountManagement: getAccountManagement,
     handleDeleteUser: handleDeleteUser,

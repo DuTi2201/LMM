@@ -16,21 +16,18 @@ module.exports = (sequelize, DataTypes) => {
         as: 'file'
       });
 
-      Material.belongsToMany(models.User, {
-        through: 'Material_User',
-        foreignKey: 'material_id',
-        as: 'user'
-      });
-      Material.belongsToMany(models.Subject, {
-        through: 'Material_Subject',
-        foreignKey: 'material_id',
-        as: 'subject'
-      });
+      Material.belongsTo(models.Subject, { foreignKey: 'subject_id', as: 'subject' });
+      
     }
   };
   Material.init({
-    name: DataTypes.STRING,
-    description: DataTypes.STRING
+    material_name: DataTypes.STRING,
+    material_author: DataTypes.STRING,
+    material_publisher: DataTypes.STRING,
+    material_isbn: DataTypes.STRING,
+    material_edition: DataTypes.STRING,
+    material_classification: DataTypes.STRING,
+    subject_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Material',

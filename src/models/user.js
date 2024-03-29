@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
       User.belongsTo(models.Group, {
         foreignKey: 'group_id',
         as: 'group'
@@ -21,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'subject'
       });
     }
-  }
+  };
   User.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,

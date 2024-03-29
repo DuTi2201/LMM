@@ -31,7 +31,8 @@
                 <th>Subject Code</th>
                 <th>Subject Name</th>
                 <th>Description</th>
-                <th>Type</th>
+                <th>Curriculum</th>
+                <th>FileName <br/>File Path</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -52,6 +53,12 @@
                   </td>
                   <td>
                     <%= item.subject_type %>
+                  </td>
+                  <td>
+                    <% item.file.forEach(function(file) { %>
+                      <p><%= file.file_name %><br /><%= file.file_upload %></p>
+                    
+                    <% }) %>
                   </td>
                   <td>
                     <a style="display: inline;" href="/subject-management/update-subjects/<%= item.id %>"><button

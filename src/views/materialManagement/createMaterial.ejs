@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Curriculum</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Nobile&family=Mohave:wght@400&family=Amasis+MT+Pro+Medium&display=swap">
+  <link rel="stylesheet" type="text/css" href="/public/css/concept.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ 
+</head>
+
+<body>
+    <div class="wrapper" id="wrapper">
+
+        <main class="nav-drawer page-content-wrapper" id="page-content-wrapper">
+          <div class="contentForm" id="form">
+            <form action="/material-management/create-material/material-created"  method="POST" enctype="multipart/form-data">
+              <div class="container">
+                <h1>Create New Material</h1>
+                <div class="col-md-8">
+                  <div class="form-group ">
+                    <label for="subject_name">Subject: </label>
+                    <select id="subject_name" name="subject_id">
+                     
+                          <% subjectList.forEach(function(subject) { %>
+                              <option value="<%= subject.id %>"><%= subject.subject_name %></option>
+                          <% }); %>
+                     
+                      
+                  </select>
+                </div>
+                  <div class="form-group">
+                    <input type="text" name="material_name" id="material_name" placeholder="Material Name">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="material_author" id="material_author" placeholder="Author" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="material_isbn" id="material_isbn" placeholder="ISBN">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="material_publisher" id="material_publisher" placeholder="Publisher">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="material_edition" id="material_edition" placeholder="Edition">
+                  </div>
+                  <div class="form-group ">
+                    <label for="material_classification">Classification: </label>
+                    <select name="material_classification" id="material_classification">
+                        <option value="isOnline">Is Online</option>
+                        <option value="isHardCopy">Is Hard Copy</option>
+                        <option value="isMainMaterial">Is Main Material</option>
+                    </select>
+                </div>
+                  <div class="form-group">
+                    <input type="file" name="file_upload" />
+                  </div>
+                  <button class="add-user-btn" type="submit" name="submit" id="submit">Create</button>
+                  <a href="/material-management" id="back">Back</a>
+                </div>
+                
+                
+              </div>
+          </div>
+          </form>
+    </div>
+    </div>
+    </main>
+   
+</body>
+
+</html>

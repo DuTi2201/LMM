@@ -7,7 +7,6 @@ import bodyParser from "body-parser";
 import cookieParser from 'cookie-parser';
 import session from "express-session";
 import connectFlash from "connect-flash";
-// import connection from "./config/connectDB";
 import passport from "passport";
 
 let app = express();

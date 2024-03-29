@@ -9,6 +9,7 @@ import multer from 'multer';
 import accountManagementController from "../controllers/accountManagementController";
 import curriculumManagementController from "../controllers/curriculumManagementController";
 import subjectManagementController from "../controllers/subjectManagementController";
+import materialManagementController from "../controllers/materialManagementController";
 import JWTAction from "../middleware/JWTAction";
 // Init all passport
 initPassportLocal();
@@ -43,12 +44,17 @@ let initWebRoutes = (app) => {
 
     router.get('/subject-management', subjectManagementController.getSubjectManagement);
     router.get('/subject-management/create-subjects', subjectManagementController.getCreateSubject);
-    router.post('/subject-management/create-subjects/subject-created', subjectManagementController.createdSubject);
+    router.post('/subject-management/create-subjects/subject-created', upload.single('file_upload'), subjectManagementController.createdSubject);
     router.post('/subject-management/delete-subject/:id', subjectManagementController.handleDeleteSubject);
     router.get('/subject-management/update-subjects/:id', subjectManagementController.getUpdateSubject);
     router.post('/subject-management/update-subjects/subject-updated', subjectManagementController.handleUpdateSubject);
     router.get('/subject-enroll', subjectManagementController.getEnroll);
     router.post('/subject-enroll/enrolled', subjectManagementController.postEnroll);
+
+    router.get('/material-management', materialManagementController.getManagementMaterial);
+    router.get('/material-management/create-material', materialManagementController.getCreateMaterial);
+    router.post('/material-management/create-material/material-created',upload.single('file_upload'), materialManagementController.createdMaterial);
+    router.post('/material-management/delete-material/:id', materialManagementController.handleDeleteMaterial);
 
     router.get("/register", registerController.getPageRegister);
     router.post("/register", auth.validateRegister, registerController.createNewUser);

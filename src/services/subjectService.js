@@ -14,22 +14,29 @@ const checkSubjectCodeExist = async (SubjectCode) => {
 
 const getSubjectList = async () => {
     try {
-        let subjectList = [];
-        subjectList = await db.Subject.findAll();
-    return subjectList
+      let subjectList = await db.Subject.findAll({
+        include: [{
+          model: db.File,
+          as: 'file',
+          required: false,
+          through: { model: db.Subject_File }
+        }]
+      });
+      return subjectList;
     } catch (e) {
-        console.log(e)
-        return {
-            EM: "Something Wrong...",
-            EC: -2
-        }
+      console.log(e);
+      return {
+        EM: "Something Wrong...",
+        EC: -2
+      };
     }
-    
-}
+  };
 
-const createnewSubject = async (rawSubjectData, fileInfo) => {
+
+
+const createNewSubject = async (rawSubjectData, fileInfo) => {
     try {
-        //check curriculum_code are exist
+        
         let isCodeExist = await checkSubjectCodeExist(rawSubjectData.subject_code);
         if (isCodeExist === true) {
             return {
@@ -65,34 +72,6 @@ const createnewSubject = async (rawSubjectData, fileInfo) => {
 }
 
 
-// const createNewSubject = async (rawSubjectData) => {
-//     try {
-//         //check curriculum_code are exist
-//         let isCodeExist = await checkSubjectCodeExist(rawSubjectData.subject_code);
-//         if (isCodeExist === true) {
-//             return {
-//                 EM: "The Subject Code is already exist!",
-//                 EC: 1
-//             }
-//         }
-//         await db.Subject.create({
-//             subject_name: rawSubjectData.subject_name,
-//             subject_code: rawSubjectData.subject_code,
-//             subject_description: rawSubjectData.subject_description,
-//             subject_type: rawSubjectData.subject_type
-//         })
-//         return {
-//             EM: "Create a new subject successful",
-//             EC: '0'
-//         }
-//     } catch (e) {
-//         console.log(e)
-//         return {
-//             EM: "Something Wrong...",
-//             EC: -2
-//         }
-//     }
-// }
 
 const findSubjectById = async (id) => {
     let subjct = {};
@@ -138,6 +117,6 @@ const enrollSubject = async (userId, subjectId) => {
 };
 
 module.exports = {
-    createNewSubject,getSubjectList,deleteSubject,findSubjectById,updateSubjectInfor, getSubjectsByCurriculum, enrollSubject
+    createNewSubject, getSubjectList, deleteSubject, findSubjectById, updateSubjectInfor, getSubjectsByCurriculum, enrollSubject
   
 }

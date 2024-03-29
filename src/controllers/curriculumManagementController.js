@@ -34,10 +34,10 @@ let createdCurriculum = async (req, res) => {
             errorsArr.push(item.msg);
         });
         req.flash("errors", errorsArr);
-        return res.redirect("/account-management");
+        return res.redirect("/curriculum-management");
     }
 
-    
+
 
     //create a new curriculum
     let fileInfo = {
@@ -46,7 +46,7 @@ let createdCurriculum = async (req, res) => {
         file_path: req.file.path,
         file_size: req.file.size,
         mimetype: req.file.mimetype
-      };
+    };
     let newCurriculum = {
         curriculum_name: req.body.curriculum_name,
         curriculum_code: req.body.curriculum_code,
